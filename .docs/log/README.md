@@ -5,3 +5,5 @@ https://zenn.dev/sanagi/articles/fb507ea6595608 この記事を一部参考に�
 ```shell
 composer create-project --prefer-dist laravel/laravel .
 ```
+
+デプロイするサーバが`apache`のため、apache での構築を実施。
