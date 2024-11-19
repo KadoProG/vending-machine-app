@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Apache設定ファイルのコピー
-COPY ./.docker/apache/default.conf /etc/apache2/sites-available/000-default.conf
+COPY ./.docker/php/default.conf /etc/apache2/sites-available/000-default.conf
 
 # Apacheのモジュール設定（mod_rewriteを有効化）
 RUN a2enmod rewrite
