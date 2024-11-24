@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Taskhub System Admin Web</title>
+    <title>これはタイトル</title>
     @viteReactRefresh
     @vite(['resources/ts/app.tsx'])
 </head>
