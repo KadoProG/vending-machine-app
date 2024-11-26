@@ -2,7 +2,7 @@
     "semi": false,
     "overrides": [
         {
-            "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+            "files": ["*.ts", "*.tsx", "*.js", "*.jsx", "*.css", "*.scss"],
             "options": {
                 "trailingComma": "es5",
                 "tabWidth": 2,
