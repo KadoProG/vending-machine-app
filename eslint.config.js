@@ -8,8 +8,8 @@ import prettier from 'eslint-config-prettier';
 
 export default tseslint.config({
   extends: [js.configs.recommended, ...tseslint.configs.recommended, prettier],
-  files: ['**/*.{ts,tsx}'],
-  ignores: ['dist'],
+  files: ['resources/ts/*.{ts,tsx}'],
+  ignores: ['dist', 'vendor'],
   languageOptions: {
     ecmaVersion: 2020,
     globals: globals.browser,
