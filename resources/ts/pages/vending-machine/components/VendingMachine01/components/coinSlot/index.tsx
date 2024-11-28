@@ -1,3 +1,5 @@
+import { ReturnLever } from '@/pages/vending-machine/components/VendingMachine01/components/coinSlot/ReturnLever';
+
 export const CoinSlot = () => (
   <div
     style={{
@@ -35,7 +37,7 @@ export const CoinSlot = () => (
           height: '12%',
           background: '#222',
           boxShadow:
-            'inset 0 -2px 3px rgba(255, 255, 255, 0.1), inset 0 2px 3px rgba(0, 0, 0, 0.4);',
+            'inset 0 -2px 3px rgba(255, 255, 255, 0.1), inset 0 2px 3px rgba(0, 0, 0, 0.4)',
         }}
       >
         <div
@@ -90,32 +92,8 @@ export const CoinSlot = () => (
       <Coin index={3}>10</Coin>
     </div>
 
-    <div
-      style={{
-        position: 'absolute',
-        top: '55%',
-        left: '30%',
-        transform: 'translate(-50%, -50%)',
-        width: '40%',
-        height: '63%',
-        borderRadius: '50%',
-        boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2), inset 0 1px 3px rgba(255, 255, 255, 0.3)',
-      }}
-    ></div>
-    <div
-      style={{
-        position: 'absolute',
-        top: '-2%',
-        left: '0%',
-        height: '63%',
-        fontSize: '1.5%',
-        color: 'white',
-        transform: 'scale(0.6)',
-        fontWeight: 'bold',
-      }}
-    >
-      おつり・返却
-    </div>
+    {/* おつり・返却レバー */}
+    <ReturnLever />
   </div>
 );
 
