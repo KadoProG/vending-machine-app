@@ -1,5 +1,6 @@
 import { CoinSlot } from '@/pages/vending-machine/components/VendingMachine01/components/coinSlot';
 import { ExtractionPort } from '@/pages/vending-machine/components/VendingMachine01/components/ExtractionPort';
+import { MonitorsOnSale } from '@/pages/vending-machine/components/VendingMachine01/components/monitorsOnSale';
 
 export const VendingMachine01 = () => (
   <div
@@ -41,5 +42,6 @@ export const VendingMachine01 = () => (
     </div>
     <ExtractionPort />
     <CoinSlot />
+    <MonitorsOnSale />
   </div>
 );
