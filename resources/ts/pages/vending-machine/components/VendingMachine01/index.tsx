@@ -1,4 +1,5 @@
 import { CoinSlot } from '@/pages/vending-machine/components/VendingMachine01/components/coinSlot';
+import { DisplayPanel } from '@/pages/vending-machine/components/VendingMachine01/components/displayPanel';
 import { ExtractionPort } from '@/pages/vending-machine/components/VendingMachine01/components/ExtractionPort';
 import { MonitorsOnSale } from '@/pages/vending-machine/components/VendingMachine01/components/monitorsOnSale';
 
@@ -14,19 +15,7 @@ export const VendingMachine01 = () => (
       justifyContent: 'center',
     }}
   >
-    <div
-      style={{
-        position: 'absolute',
-        top: '1.5%',
-        left: '2%',
-        background: 'white',
-        width: '80%',
-        height: '50%',
-        borderRadius: '1%',
-      }}
-    >
-      sample
-    </div>
+    <DisplayPanel />
     <div
       style={{
         position: 'absolute',
