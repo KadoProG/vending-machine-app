@@ -1,4 +1,5 @@
 import { BillSlot } from '@/pages/vending-machine/components/VendingMachine01/components/billSlot';
+import { CoinReturnSlot } from '@/pages/vending-machine/components/VendingMachine01/components/coinReturnSlot';
 import { CoinSlot } from '@/pages/vending-machine/components/VendingMachine01/components/coinSlot';
 import { DisplayPanel } from '@/pages/vending-machine/components/VendingMachine01/components/displayPanel';
 import { ExtractionPort } from '@/pages/vending-machine/components/VendingMachine01/components/ExtractionPort';
@@ -34,5 +35,6 @@ export const VendingMachine01 = () => (
     <CoinSlot />
     <BillSlot />
     <MonitorsOnSale />
+    <CoinReturnSlot />
   </div>
 );
