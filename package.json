@@ -10,7 +10,8 @@
         "check-types": "tsc -b",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "prepare": "husky"
     },
     "dependencies": {
         "autoprefixer": "^10.4.20",
