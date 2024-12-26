@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignUuid('author_id')->constrained('users')->comment('商品を作成したユーザーのID');
             $table->foreignUuid('last_edited_id')->constrained('users')->comment('最後に編集したユーザーのID');
             $table->timestamps(); // 作成日時と更新日時を自動管理
+            $table->softDeletes(); // 論理削除カラムを追加
         });
     }
 
