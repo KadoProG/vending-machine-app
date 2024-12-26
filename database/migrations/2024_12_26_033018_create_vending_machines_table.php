@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('vending_machines', function (Blueprint $table) {
             $table->uuid('id')->primary()->comment('自販機の一意の識別子（UUID）');
-            $table->string('name')->comment('自販機名（必須）');
+            $table->string('name', 50)->comment('自販機名（必須）');
+            $table->string('description')->nullable()->comment('自販機の説明');
             $table->foreignUuid('background_id')->nullable()->constrained('backgrounds')->comment('背景色のID');
             $table->foreignUuid('author_id')->constrained('users')->comment('自販機を作成したユーザーのID');
             $table->timestamps(); // 作成日時と更新日時を自動管理
