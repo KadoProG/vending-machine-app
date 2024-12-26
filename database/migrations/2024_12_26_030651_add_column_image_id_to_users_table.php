@@ -12,7 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignUuid('image_id')->nullable()->constrained('images')->onDelete('set null');
+            $table->foreignUuid('image_id')
+                ->nullable()
+                ->constrained('images')
+                ->onDelete('set null')
+                ->comment('ユーザーのプロフィール画像のID（画像が削除されるとNULLになる）');
         });
     }
 
@@ -22,7 +26,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('image_id');
+            $table->dropConstrainedForeignId('image_id'); // 外部キー制約を含むカラムの削除
         });
     }
 };
