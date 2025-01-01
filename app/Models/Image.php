@@ -26,6 +26,17 @@ class Image extends Model
     ];
 
     /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $casts = [
+        'id' => 'string',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    /**
      * Get the user that owns the image.
      */
     public function user()

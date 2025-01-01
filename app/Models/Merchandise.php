@@ -26,6 +26,17 @@ class Merchandise extends Model
     ];
 
     /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $casts = [
+        'id' => 'string',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    /**
      * Get the image that owns the merchandise.
      */
     public function image()

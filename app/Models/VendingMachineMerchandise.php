@@ -19,6 +19,17 @@ class VendingMachineMerchandise extends Model
     ];
 
     /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $casts = [
+        'id' => 'string',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
+    /**
      * Get the vending machine that owns the vending machine merchandise.
      */
     public function vendingMachine()
