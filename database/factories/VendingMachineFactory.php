@@ -20,7 +20,6 @@ class VendingMachineFactory extends Factory
             'id' => $this->faker->uuid(),
             'name' => $this->faker->name(),
             'description' => $this->faker->sentence(),
-            'background_id' => \App\Models\Background::factory(),
             // 'author_id' => \App\Models\User::factory(),
         ];
     }
