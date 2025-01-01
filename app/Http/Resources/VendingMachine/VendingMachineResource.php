@@ -2,8 +2,6 @@
 
 namespace App\Http\Resources\VendingMachine;
 
-use App\Http\Resources\Background\BackgroundResource;
-use App\Http\Resources\User\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,10 +18,20 @@ class VendingMachineResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description ?? null,
-            'background_id' => $this->background_id ?? null,
-            'author_id' => $this->author_id ?? null,
-            'background' => $this->background_id ? new BackgroundResource($this->background) : null,
-            'author' => $this->author_id ? new UserResource($this->author) : null,
+            'background' => $this->background_id ? [
+                'id' => $this->background->id,
+                'css_type' => $this->background->css_type,
+            ] : null,
+            'author' => $this->author_id ? [
+                'id' => $this->author->id,
+                'name' => $this->author->name,
+                'email' => $this->author->email,
+                'image' => [
+                    'id' => $this->author->image->id,
+                    'alt' => $this->author->image->alt ?? null,
+                    'image_url' => $this->author->image->image_url,
+                ],
+            ] : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

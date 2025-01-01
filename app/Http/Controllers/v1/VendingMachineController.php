@@ -10,7 +10,7 @@ class VendingMachineController extends Controller
 {
     public function index()
     {
-        $vendingMachines = VendingMachine::with('background', 'author')->paginate(10);
+        $vendingMachines = VendingMachine::with('background', 'author.image')->paginate(10);
 
         return new VendingMachineCollection($vendingMachines);
     }

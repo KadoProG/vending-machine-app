@@ -18,7 +18,7 @@ class VendingMachineFactory extends Factory
     {
         return [
             'id' => $this->faker->uuid(),
-            'name' => $this->faker->name(),
+            'name' => "自販機-({$this->faker->name()})",
             'description' => $this->faker->sentence(),
             // 'background_id' => \App\Models\Background::factory(),
             // 'author_id' => \App\Models\User::factory(),

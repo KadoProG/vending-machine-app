@@ -5,23 +5,9 @@ export type BackgroundResource = {
   css_type: string;
 }
 
-export type Image = {
-  id: string;
-  name: string;
-  image_url: string;
-  public_type: string;
-}
-
 export type LoginRequest = {
   email: string;
   password: string;
-}
-
-export type UserResource = {
-  id: string;
-  name: string;
-  email: string;
-  image: Image;
 }
 
 export type VendingMachineCollection = {
@@ -33,11 +19,20 @@ export type VendingMachineResource = {
   name: string;
   description: string;
   background_id: string;
-  author_id: string;
 
   background: BackgroundResource | null;
 
-  author: UserResource | null;
+  author: {
+    id: string;
+    name: string;
+    email: string;
+
+    image: {
+      id: string;
+      alt: string;
+      image_url: string;
+    };
+  };
 }
 
 export type ValidationException = {
