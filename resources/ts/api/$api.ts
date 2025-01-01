@@ -68,10 +68,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     },
     v1: {
       vending_machines: {
+        /**
+         * @returns `VendingMachineCollection`
+         */
         get: (option?: { config?: T | undefined } | undefined) =>
-          fetch<Methods_1sbzx06['get']['resBody'], BasicHeaders, Methods_1sbzx06['get']['status']>(prefix, PATH6, GET, option).text(),
+          fetch<Methods_1sbzx06['get']['resBody'], BasicHeaders, Methods_1sbzx06['get']['status']>(prefix, PATH6, GET, option).json(),
+        /**
+         * @returns `VendingMachineCollection`
+         */
         $get: (option?: { config?: T | undefined } | undefined) =>
-          fetch<Methods_1sbzx06['get']['resBody'], BasicHeaders, Methods_1sbzx06['get']['status']>(prefix, PATH6, GET, option).text().then(r => r.body),
+          fetch<Methods_1sbzx06['get']['resBody'], BasicHeaders, Methods_1sbzx06['get']['status']>(prefix, PATH6, GET, option).json().then(r => r.body),
         $path: () => `${prefix}${PATH6}`,
       },
     },

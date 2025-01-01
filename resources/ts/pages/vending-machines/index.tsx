@@ -4,7 +4,8 @@ import React from 'react';
 export const VendingMachinesPage = () => {
   const getData = React.useCallback(async () => {
     const data = await apiClient.v1.vending_machines.get();
-    console.log(JSON.parse(data.body));
+    console.log(data.body.data);
+    console.log(data.body.meta);
   }, []);
 
   React.useEffect(() => {
