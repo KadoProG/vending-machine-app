@@ -19,11 +19,11 @@ class VendingMachineResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $this->description,
-            'background' => new BackgroundResource($this->background),
-            'author' => new UserResource($this->author),
-            'background_id' => $this->background_id,
-            'author_id' => $this->author_id,
+            'description' => $this->description ?? null,
+            'background_id' => $this->background_id ?? null,
+            'author_id' => $this->author_id ?? null,
+            'background' => $this->background_id ? new BackgroundResource($this->background) : null,
+            'author' => $this->author_id ? new UserResource($this->author) : null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
