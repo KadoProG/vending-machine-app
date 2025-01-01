@@ -10,6 +10,7 @@ export interface ButtonProps {
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  highlight?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
@@ -63,7 +64,11 @@ export const Button: React.FC<ButtonProps> = (props) => {
           disabled={props.disabled}
           type={props.type}
           className={styles.button}
-          style={{ width: props.width, ...props.style }}
+          style={{
+            width: props.width,
+            ...props.style,
+            ...(props.highlight ? { backgroundColor: 'var(--color-paper-active)' } : {}),
+          }}
           tabIndex={0} // フォーカスを持たせる
         >
           {props.children}

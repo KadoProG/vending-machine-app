@@ -65,4 +65,8 @@ img {
     --background-paper: #17191c;
     --divider: #495057;
   }
+
+  img {
+    filter: brightness(0.8);
+  }
 }

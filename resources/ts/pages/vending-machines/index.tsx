@@ -1,14 +1,36 @@
+import { Pagination } from '@/components/navigation/Pagination';
 import { apiClient } from '@/lib/apiClient';
+import { useForm } from 'react-hook-form';
 import useSWR from 'swr';
 
 export const VendingMachinesPage = () => {
+  const { control } = useForm<{ page: number }>({
+    defaultValues: {
+      page: 1,
+    },
+  });
+
   const { data } = useSWR('/v1/vending-machines', apiClient.v1.vending_machines.get, {});
 
   const vendingMachines = data?.body.data;
+  const meta = data?.body
+    ? {
+        current_page: Number(data.body.current_page),
+        per_page: Number(data.body.per_page),
+        total: Number(data.body.total),
+        last_page: Number(data.body.last_page),
+      }
+    : null;
 
   return (
     <div>
       <h1>Vending Machines</h1>
+      <Pagination
+        control={control}
+        name="page"
+        rules={{ required: true }}
+        count={meta?.last_page ?? 0}
+      />
       <div
         style={{
           display: 'flex',
@@ -22,7 +44,7 @@ export const VendingMachinesPage = () => {
           <div
             key={vendingMachine.id}
             style={{
-              border: '1px solid #ccc',
+              border: '1px solid var(--divider)',
               padding: 8,
               paddingBottom: 48,
               minHeight: 120,
