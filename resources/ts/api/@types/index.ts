@@ -1,10 +1,4 @@
 /* eslint-disable */
-export type BackgroundResource = {
-  id: string;
-  name: string;
-  css_type: string;
-}
-
 export type LoginRequest = {
   email: string;
   password: string;
@@ -12,15 +6,21 @@ export type LoginRequest = {
 
 export type VendingMachineCollection = {
   data: VendingMachineResource[];
+  current_page: string;
+  per_page: string;
+  total: string;
+  last_page: string;
 }
 
 export type VendingMachineResource = {
   id: string;
   name: string;
   description: string;
-  background_id: string;
 
-  background: BackgroundResource | null;
+  background: {
+    id: string;
+    css_type: string;
+  };
 
   author: {
     id: string;
