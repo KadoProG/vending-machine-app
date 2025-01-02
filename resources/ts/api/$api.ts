@@ -1,4 +1,5 @@
 import type { AspidaClient, BasicHeaders } from 'aspida';
+import { dataToURLString } from 'aspida';
 import type { Methods as Methods_1kmeqgk } from './email/verification-notification';
 import type { Methods as Methods_1r7pmad } from './forgot-password';
 import type { Methods as Methods_idk8rz } from './login';
@@ -71,14 +72,15 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         /**
          * @returns `VendingMachineCollection`
          */
-        get: (option?: { config?: T | undefined } | undefined) =>
+        get: (option?: { query?: Methods_1sbzx06['get']['query'] | undefined, config?: T | undefined } | undefined) =>
           fetch<Methods_1sbzx06['get']['resBody'], BasicHeaders, Methods_1sbzx06['get']['status']>(prefix, PATH6, GET, option).json(),
         /**
          * @returns `VendingMachineCollection`
          */
-        $get: (option?: { config?: T | undefined } | undefined) =>
+        $get: (option?: { query?: Methods_1sbzx06['get']['query'] | undefined, config?: T | undefined } | undefined) =>
           fetch<Methods_1sbzx06['get']['resBody'], BasicHeaders, Methods_1sbzx06['get']['status']>(prefix, PATH6, GET, option).json().then(r => r.body),
-        $path: () => `${prefix}${PATH6}`,
+        $path: (option?: { method?: 'get' | undefined; query: Methods_1sbzx06['get']['query'] } | undefined) =>
+          `${prefix}${PATH6}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
       },
     },
     verify_email: {
