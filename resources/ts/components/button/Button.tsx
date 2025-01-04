@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '@/components/button/Button.module.scss';
+import { Link } from 'react-router-dom';
 
 export interface ButtonProps {
   href?: string;
@@ -10,7 +11,10 @@ export interface ButtonProps {
   onMouseDown?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  /** ハイライトを付ける場合に付与 */
   highlight?: boolean;
+  /** 新しいタブで開く場合に付与 */
+  isExternalLink?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
@@ -39,7 +43,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
 
   return (
     <div className={styles.container}>
-      {props.href ? (
+      {props.href && props.isExternalLink && (
         <a
           href={props.href}
           className={styles.button}
@@ -57,7 +61,29 @@ export const Button: React.FC<ButtonProps> = (props) => {
             />
           )}
         </a>
-      ) : (
+      )}
+
+      {props.href && !props.isExternalLink && (
+        <Link
+          to={props.href}
+          className={styles.button}
+          style={{ width: props.width, ...props.style }}
+          onMouseDown={handleMouseDown}
+          onClick={props.onClick}
+          tabIndex={0} // フォーカスを持たせる
+        >
+          {props.children}
+          {rippleStyles && (
+            <span
+              className={styles.ripple}
+              style={rippleStyles}
+              onAnimationEnd={() => setRippleStyles(null)}
+            />
+          )}
+        </Link>
+      )}
+
+      {!props.href && (
         <button
           onMouseDown={handleMouseDown}
           onClick={props.onClick}
