@@ -5,6 +5,7 @@ namespace App\Http\Controllers\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendingMachine\IndexVendingMachineRequest;
 use App\Http\Resources\VendingMachine\VendingMachineCollection;
+use App\Http\Resources\VendingMachine\VendingMachineResource;
 use App\Models\VendingMachine;
 
 class VendingMachineController extends Controller
@@ -23,5 +24,10 @@ class VendingMachineController extends Controller
         $vendingMachines = VendingMachine::with('background', 'author.image')->paginate($perPage, ['*'], 'page', $page);
 
         return new VendingMachineCollection($vendingMachines);
+    }
+
+    public function show(VendingMachine $vendingMachine)
+    {
+        return new VendingMachineResource($vendingMachine);
     }
 }

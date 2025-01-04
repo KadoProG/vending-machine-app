@@ -7,6 +7,7 @@ import type { Methods as Methods_1rpsris } from './logout';
 import type { Methods as Methods_1pbnd9f } from './register';
 import type { Methods as Methods_1i354bd } from './reset-password';
 import type { Methods as Methods_1sbzx06 } from './v1/vending-machines';
+import type { Methods as Methods_1gaiora } from './v1/vending-machines/_id@string';
 import type { Methods as Methods_1x2du5x } from './verify-email/_id@string/_hash@string';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
@@ -69,6 +70,23 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     },
     v1: {
       vending_machines: {
+        _id: (val2: string) => {
+          const prefix2 = `${PATH6}/${val2}`;
+
+          return {
+            /**
+             * @returns `VendingMachineResource`
+             */
+            get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_1gaiora['get']['resBody'], BasicHeaders, Methods_1gaiora['get']['status']>(prefix, prefix2, GET, option).json(),
+            /**
+             * @returns `VendingMachineResource`
+             */
+            $get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_1gaiora['get']['resBody'], BasicHeaders, Methods_1gaiora['get']['status']>(prefix, prefix2, GET, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix2}`,
+          };
+        },
         /**
          * @returns `VendingMachineCollection`
          */
