@@ -1,3 +1,4 @@
+import { Button } from '@/components/button/Button';
 import { Pagination } from '@/components/navigation/Pagination';
 import { apiClient } from '@/lib/apiClient';
 import { useForm } from 'react-hook-form';
@@ -60,9 +61,13 @@ export const VendingMachinesPage = () => {
         }}
       >
         {vendingMachines?.map((vendingMachine) => (
-          <div
+          <Button
             key={vendingMachine.id}
             style={{
+              display: 'block',
+              width: '100%',
+              background: 'transparent',
+              textAlign: 'left',
               border: '1px solid var(--divider)',
               padding: 8,
               paddingBottom: 48,
@@ -70,11 +75,13 @@ export const VendingMachinesPage = () => {
               position: 'relative',
               boxShadow: `inset 0 -4px 4px -2px ${vendingMachine.background?.css_type ?? 'white'}`,
             }}
+            href={`/vending-machines/${vendingMachine.id}`}
           >
-            <h2>{vendingMachine.name}</h2>
+            <h2 style={{ fontSize: 24 }}>{vendingMachine.name}</h2>
             <p
               style={{
                 color: vendingMachine.description ? 'black' : 'gray',
+                fontSize: 16,
               }}
             >
               {vendingMachine.description ?? '説明はありません'}
@@ -104,7 +111,7 @@ export const VendingMachinesPage = () => {
                 {vendingMachine.author.name}
               </div>
             )}
-          </div>
+          </Button>
         ))}
       </div>
     </div>
