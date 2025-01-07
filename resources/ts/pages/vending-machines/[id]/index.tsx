@@ -1,4 +1,5 @@
 import { apiClient } from '@/lib/apiClient';
+import { VendingMachine01 } from '@/pages/vending-machines/[id]/components/VendingMachine01';
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
 
@@ -34,6 +35,7 @@ export const VendingMachinesDetailPage = () => {
           }}
         >
           <h2>{vendingMachine?.name}</h2>
+          <VendingMachine01 />
         </div>
       </div>
     </div>

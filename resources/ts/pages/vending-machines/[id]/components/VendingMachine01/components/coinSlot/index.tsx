@@ -1,4 +1,4 @@
-import { ReturnLever } from '@/pages/vending-machine/components/VendingMachine01/components/coinSlot/ReturnLever';
+import { ReturnLever } from '@/pages/vending-machines/[id]/components/VendingMachine01/components/coinSlot/ReturnLever';
 
 export const CoinSlot = () => (
   <div

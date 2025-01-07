@@ -1,5 +1,4 @@
 import { HomePage } from '@/pages/home';
-import { VendingMachinePage } from '@/pages/vending-machine';
 import { VendingMachinesPage } from '@/pages/vending-machines';
 import { VendingMachinesDetailPage } from '@/pages/vending-machines/[id]';
 import React from 'react';
@@ -11,7 +10,6 @@ export const Router: React.FC = () => (
       <Route path="/" element={<HomePage />} />
       <Route path="/vending-machines" element={<VendingMachinesPage />} />
       <Route path="/vending-machines/:id" element={<VendingMachinesDetailPage />} />
-      <Route path="/vending-machine" element={<VendingMachinePage />} />
     </Routes>
   </BrowserRouter>
 );
