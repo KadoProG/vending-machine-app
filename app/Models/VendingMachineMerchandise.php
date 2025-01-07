@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class VendingMachineMerchandise extends Model
 {
+    /** @use HasFactory<\Database\Factories\VendingMachineMerchandiseFactory> */
+    use HasFactory;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -14,7 +18,6 @@ class VendingMachineMerchandise extends Model
     protected $fillable = [
         'vending_machine_id',
         'merchandise_id',
-        'price',
         'stock_quantity',
     ];
 
