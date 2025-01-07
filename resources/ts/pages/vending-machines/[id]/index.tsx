@@ -35,7 +35,7 @@ export const VendingMachinesDetailPage = () => {
           }}
         >
           <h2>{vendingMachine?.name}</h2>
-          <VendingMachine01 />
+          {vendingMachine && <VendingMachine01 vendingMachine={vendingMachine} />}
         </div>
       </div>
     </div>

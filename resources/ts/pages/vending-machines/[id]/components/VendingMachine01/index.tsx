@@ -1,3 +1,4 @@
+import { VendingMachineResource } from '@/api/@types';
 import { BillSlot } from '@/pages/vending-machines/[id]/components/VendingMachine01/components/billSlot';
 import { CoinReturnSlot } from '@/pages/vending-machines/[id]/components/VendingMachine01/components/coinReturnSlot';
 import { CoinSlot } from '@/pages/vending-machines/[id]/components/VendingMachine01/components/coinSlot';
@@ -5,11 +6,15 @@ import { DisplayPanel } from '@/pages/vending-machines/[id]/components/VendingMa
 import { ExtractionPort } from '@/pages/vending-machines/[id]/components/VendingMachine01/components/ExtractionPort';
 import { MonitorsOnSale } from '@/pages/vending-machines/[id]/components/VendingMachine01/components/monitorsOnSale';
 
-export const VendingMachine01 = () => (
+type Props = {
+  vendingMachine: VendingMachineResource;
+};
+
+export const VendingMachine01: React.FC<Props> = ({ vendingMachine }) => (
   <div
     style={{
       position: 'relative',
-      background: 'blue',
+      background: vendingMachine.background.css_type,
       width: 600,
       height: 800,
       display: 'flex',
