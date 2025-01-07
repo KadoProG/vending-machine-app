@@ -28,8 +28,7 @@ export const VendingMachinesPage = () => {
       page,
       per_page: 10,
     },
-    fetcher,
-    {}
+    fetcher
   );
 
   const vendingMachines = data?.body.data;

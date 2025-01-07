@@ -3,17 +3,29 @@ import { VendingMachine01 } from '@/pages/vending-machines/[id]/components/Vendi
 import { useParams } from 'react-router-dom';
 import useSWR from 'swr';
 
-const fetcher = async (id: string) => {
-  const response = await apiClient.v1.vending_machines._id(id).get();
+const fetcher = async (args: { key: string; id: string }) => {
+  const response = await apiClient.v1.vending_machines._vendingMachine(args.id).$get();
+  return response;
+};
+
+const fetcher2 = async (args: { key: string; id: string }) => {
+  const response = await apiClient.v1.vending_machines._vendingMachine(args.id).merchandises.$get();
   return response;
 };
 
 export const VendingMachinesDetailPage = () => {
   const { id } = useParams();
 
-  const { data } = useSWR(id ?? null, fetcher, {});
+  const { data } = useSWR(id ? { key: `/vending-machines/${id}`, id } : null, fetcher, {});
 
-  const vendingMachine = data?.body.data;
+  const vendingMachine = data?.data;
+
+  const { data: merchandises } = useSWR(
+    vendingMachine?.id ? { key: `/vending-machines/${id}/merchandises`, id } : null,
+    fetcher2
+  );
+
+  console.log(merchandises?.data);
 
   return (
     <div>

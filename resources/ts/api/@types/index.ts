@@ -4,6 +4,30 @@ export type LoginRequest = {
   password: string;
 }
 
+export type MerchandiseResource = {
+  id: string;
+  name: string;
+  price: string;
+
+  image: {
+    id: string;
+    alt: string;
+    image_url: string;
+  };
+
+  author: {
+    id: string;
+    name: string;
+  };
+
+  last_edited: {
+    id: string;
+    name: string;
+  };
+
+  stock_quantity: string;
+}
+
 export type VendingMachineCollection = {
   data: VendingMachineResource[];
   current_page: string;
@@ -46,6 +70,11 @@ export type ValidationException = {
 }
 
 export type AuthorizationException = {
+  /** Error overview. */
+  message: string;
+}
+
+export type ModelNotFoundException = {
   /** Error overview. */
   message: string;
 }

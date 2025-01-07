@@ -49,4 +49,12 @@ class VendingMachine extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the merchandises for the vending machine.
+     */
+    public function merchandises()
+    {
+        return $this->belongsToMany(Merchandise::class, 'vending_machine_merchandises', 'vending_machine_id', 'merchandise_id')->withPivot('stock_quantity');
+    }
 }

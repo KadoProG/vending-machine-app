@@ -7,7 +7,8 @@ import type { Methods as Methods_1rpsris } from './logout';
 import type { Methods as Methods_1pbnd9f } from './register';
 import type { Methods as Methods_1i354bd } from './reset-password';
 import type { Methods as Methods_1sbzx06 } from './v1/vending-machines';
-import type { Methods as Methods_1gaiora } from './v1/vending-machines/_id@string';
+import type { Methods as Methods_o66vf } from './v1/vending-machines/_vendingMachine@string';
+import type { Methods as Methods_15dy3xk } from './v1/vending-machines/_vendingMachine@string/merchandises';
 import type { Methods as Methods_1x2du5x } from './verify-email/_id@string/_hash@string';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
@@ -19,7 +20,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH4 = '/register';
   const PATH5 = '/reset-password';
   const PATH6 = '/v1/vending-machines';
-  const PATH7 = '/verify-email';
+  const PATH7 = '/merchandises';
+  const PATH8 = '/verify-email';
   const GET = 'GET';
   const POST = 'POST';
 
@@ -70,20 +72,33 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     },
     v1: {
       vending_machines: {
-        _id: (val2: string) => {
+        _vendingMachine: (val2: string) => {
           const prefix2 = `${PATH6}/${val2}`;
 
           return {
+            merchandises: {
+              /**
+               * @returns Array of `MerchandiseResource`
+               */
+              get: (option?: { config?: T | undefined } | undefined) =>
+                fetch<Methods_15dy3xk['get']['resBody'], BasicHeaders, Methods_15dy3xk['get']['status']>(prefix, `${prefix2}${PATH7}`, GET, option).json(),
+              /**
+               * @returns Array of `MerchandiseResource`
+               */
+              $get: (option?: { config?: T | undefined } | undefined) =>
+                fetch<Methods_15dy3xk['get']['resBody'], BasicHeaders, Methods_15dy3xk['get']['status']>(prefix, `${prefix2}${PATH7}`, GET, option).json().then(r => r.body),
+              $path: () => `${prefix}${prefix2}${PATH7}`,
+            },
             /**
              * @returns `VendingMachineResource`
              */
             get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_1gaiora['get']['resBody'], BasicHeaders, Methods_1gaiora['get']['status']>(prefix, prefix2, GET, option).json(),
+              fetch<Methods_o66vf['get']['resBody'], BasicHeaders, Methods_o66vf['get']['status']>(prefix, prefix2, GET, option).json(),
             /**
              * @returns `VendingMachineResource`
              */
             $get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_1gaiora['get']['resBody'], BasicHeaders, Methods_1gaiora['get']['status']>(prefix, prefix2, GET, option).json().then(r => r.body),
+              fetch<Methods_o66vf['get']['resBody'], BasicHeaders, Methods_o66vf['get']['status']>(prefix, prefix2, GET, option).json().then(r => r.body),
             $path: () => `${prefix}${prefix2}`,
           };
         },
@@ -103,7 +118,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     },
     verify_email: {
       _id: (val1: string) => {
-        const prefix1 = `${PATH7}/${val1}`;
+        const prefix1 = `${PATH8}/${val1}`;
 
         return {
           _hash: (val2: string) => {
