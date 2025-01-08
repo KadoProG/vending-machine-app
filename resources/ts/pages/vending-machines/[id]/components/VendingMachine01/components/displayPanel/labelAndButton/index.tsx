@@ -1,4 +1,5 @@
 import { VendingMachineMerchandiseResource } from '@/api/@types';
+import { TemperatureLabel } from '@/pages/vending-machines/[id]/components/VendingMachine01/components/displayPanel/labelAndButton/components/TemperatureLabel';
 
 type Props = {
   merchandise?: VendingMachineMerchandiseResource;
@@ -37,25 +38,8 @@ export const LabelAndButton: React.FC<Props> = ({ merchandise, vendingMachineCol
         )}
       </div>
 
-      {/* 温度ラベルの表示 */}
-      {merchandise && (
-        <span
-          style={{
-            fontSize: '1%',
-            fontWeight: 'bold',
-            whiteSpace: 'nowrap',
-            background: 'blue',
-            color: 'white',
-            display: 'inline-block',
-            margin: '0 auto',
-            transform: 'translateX(-5%) scale(0.8)',
-            width: '110%',
-            textAlign: 'center',
-          }}
-        >
-          つめたい
-        </span>
-      )}
+      {merchandise && <TemperatureLabel temperature_status={merchandise.temperature_status} />}
+
       {/* ボタンの表示 */}
       <div
         style={{
