@@ -8,24 +8,12 @@ const fetcher = async (args: { key: string; id: string }) => {
   return response;
 };
 
-const fetcher2 = async (args: { key: string; id: string }) => {
-  const response = await apiClient.v1.vending_machines._vendingMachine(args.id).merchandises.$get();
-  return response;
-};
-
 export const VendingMachinesDetailPage = () => {
   const { id } = useParams();
 
   const { data } = useSWR(id ? { key: `/vending-machines/${id}`, id } : null, fetcher, {});
 
   const vendingMachine = data?.data;
-
-  const { data: merchandises } = useSWR(
-    vendingMachine?.id ? { key: `/vending-machines/${id}/merchandises`, id } : null,
-    fetcher2
-  );
-
-  console.log(merchandises?.data);
 
   return (
     <div>

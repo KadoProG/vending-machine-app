@@ -1,14 +1,22 @@
-export const LabelAndButton: React.FC = () => {
+import { MerchandiseResource } from '@/api/@types';
+
+type Props = {
+  merchandise?: MerchandiseResource;
+  vendingMachineColumnCount: number;
+};
+
+export const LabelAndButton: React.FC<Props> = ({ merchandise, vendingMachineColumnCount }) => {
   return (
     <div
       style={{
         position: 'relative',
-        width: 'calc(100% / 8)',
+        width: `calc(100% / ${vendingMachineColumnCount})`,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
       }}
     >
+      {/* ラベル画像の表示 */}
       <div
         style={{
           flex: 1,
@@ -17,30 +25,38 @@ export const LabelAndButton: React.FC = () => {
           alignItems: 'center',
         }}
       >
-        <img
-          src="/images/sample01_plastic_bottle.png"
-          alt="商品名"
-          style={{
-            width: '100%',
-          }}
-        />
+        {merchandise && (
+          <img
+            // TODO 画像のパスを変更する
+            src="/images/sample01_plastic_bottle.png"
+            alt={merchandise?.name}
+            style={{
+              width: '100%',
+            }}
+          />
+        )}
       </div>
-      <span
-        style={{
-          fontSize: '1%',
-          fontWeight: 'bold',
-          whiteSpace: 'nowrap',
-          background: 'blue',
-          color: 'white',
-          display: 'inline-block',
-          margin: '0 auto',
-          transform: 'translateX(-5%) scale(0.8)',
-          width: '110%',
-          textAlign: 'center',
-        }}
-      >
-        つめたい
-      </span>
+
+      {/* 温度ラベルの表示 */}
+      {merchandise && (
+        <span
+          style={{
+            fontSize: '1%',
+            fontWeight: 'bold',
+            whiteSpace: 'nowrap',
+            background: 'blue',
+            color: 'white',
+            display: 'inline-block',
+            margin: '0 auto',
+            transform: 'translateX(-5%) scale(0.8)',
+            width: '110%',
+            textAlign: 'center',
+          }}
+        >
+          つめたい
+        </span>
+      )}
+      {/* ボタンの表示 */}
       <div
         style={{
           width: '100%',
