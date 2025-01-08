@@ -19,10 +19,11 @@ class VendingMachineMerchandise extends Model
         'vending_machine_id',
         'merchandise_id',
         'stock_quantity',
+        'temperature_status',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be cast.
      *
      * @var array<int, string>
      */
@@ -30,6 +31,16 @@ class VendingMachineMerchandise extends Model
         'id' => 'string',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $attoributes = [
+        'stock_quantity' => 0,
+        'temperature_status' => 'default',
     ];
 
     /**

@@ -6,9 +6,9 @@ export type Methods = DefineMethods<{
   get: {
     status: 200;
 
-    /** Array of `MerchandiseResource` */
+    /** Array of `VendingMachineMerchandiseResource` */
     resBody: {
-      data: Types.MerchandiseResource[];
+      data: Types.VendingMachineMerchandiseResource[];
     };
   };
 }>;

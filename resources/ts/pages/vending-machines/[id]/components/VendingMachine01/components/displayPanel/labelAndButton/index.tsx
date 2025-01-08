@@ -1,7 +1,7 @@
-import { MerchandiseResource } from '@/api/@types';
+import { VendingMachineMerchandiseResource } from '@/api/@types';
 
 type Props = {
-  merchandise?: MerchandiseResource;
+  merchandise?: VendingMachineMerchandiseResource;
   vendingMachineColumnCount: number;
 };
 

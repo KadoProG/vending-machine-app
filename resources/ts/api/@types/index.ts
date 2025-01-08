@@ -4,10 +4,20 @@ export type LoginRequest = {
   password: string;
 }
 
-export type MerchandiseResource = {
+export type VendingMachineCollection = {
+  data: VendingMachineResource[];
+  current_page: string;
+  per_page: string;
+  total: string;
+  last_page: string;
+}
+
+export type VendingMachineMerchandiseResource = {
   id: string;
   name: string;
+  description: string;
   price: string;
+  image_id: string;
 
   image: {
     id: string;
@@ -15,10 +25,14 @@ export type MerchandiseResource = {
     image_url: string;
   };
 
+  author_id: string;
+
   author: {
     id: string;
     name: string;
   };
+
+  last_edited_id: string;
 
   last_edited: {
     id: string;
@@ -26,14 +40,7 @@ export type MerchandiseResource = {
   };
 
   stock_quantity: string;
-}
-
-export type VendingMachineCollection = {
-  data: VendingMachineResource[];
-  current_page: string;
-  per_page: string;
-  total: string;
-  last_page: string;
+  temperature_status: string;
 }
 
 export type VendingMachineResource = {

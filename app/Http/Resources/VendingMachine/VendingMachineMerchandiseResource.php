@@ -36,6 +36,7 @@ class VendingMachineMerchandiseResource extends JsonResource
                 'name' => $this->last_edited->name,
             ] : null,
             'stock_quantity' => $this->pivot->stock_quantity,
+            'temperature_status' => $this->pivot->temperature_status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

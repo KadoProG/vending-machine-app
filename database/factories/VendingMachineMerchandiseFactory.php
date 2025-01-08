@@ -21,6 +21,7 @@ class VendingMachineMerchandiseFactory extends Factory
             // 'vending_machine_id' => $this->faker->uuid(),
             // 'merchandise_id' => $this->faker->uuid(),
             'stock_quantity' => $this->faker->numberBetween(0, 10),
+            'temperature_status' => $this->faker->randomElement(['hot', 'ice', 'default']),
         ];
     }
 }
