@@ -1,9 +1,17 @@
+import { MerchandiseResource } from '@/api/@types';
 import { LabelAndButton } from '@/pages/vending-machines/[id]/components/VendingMachine01/components/displayPanel/labelAndButton';
+
+type Props = {
+  merchandises: MerchandiseResource[];
+};
 
 /**
  * 表示パネル
  */
-export const DisplayPanel: React.FC = () => {
+export const DisplayPanel: React.FC<Props> = ({ merchandises }) => {
+  const VENDING_MACHINE_ROW = 3 as const;
+  const VENDING_MACHINE_COLUMN = 8 as const;
+
   return (
     <div
       style={{
@@ -19,56 +27,27 @@ export const DisplayPanel: React.FC = () => {
     >
       <div
         style={{
-          position: 'relative',
           width: '100%',
           height: '100%',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            height: 'calc(100% / 3)',
-          }}
-        >
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            height: 'calc(100% / 3)',
-          }}
-        >
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            height: 'calc(100% / 3)',
-          }}
-        >
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-          <LabelAndButton />
-        </div>
+        {Array.from({ length: VENDING_MACHINE_ROW }).map((_, index) => (
+          <div
+            key={`display_panel_row_${index}`}
+            style={{
+              display: 'flex',
+              height: `calc(100% / ${VENDING_MACHINE_ROW})`,
+            }}
+          >
+            {Array.from({ length: VENDING_MACHINE_COLUMN }).map((_, index2) => (
+              <LabelAndButton
+                key={`display_panel_row_${index2}`}
+                merchandise={merchandises[index * VENDING_MACHINE_COLUMN + index2]}
+                vendingMachineColumnCount={VENDING_MACHINE_COLUMN}
+              />
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );
