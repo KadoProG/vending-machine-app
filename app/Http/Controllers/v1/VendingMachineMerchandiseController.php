@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Merchandise\MerchandiseResource;
+use App\Http\Resources\VendingMachine\VendingMachineMerchandiseResource;
 use App\Models\VendingMachine;
 use Illuminate\Http\Request;
 
@@ -13,6 +13,6 @@ class VendingMachineMerchandiseController extends Controller
     {
         $vendingMachine->load('merchandises.image');
 
-        return MerchandiseResource::collection($vendingMachine->merchandises);
+        return VendingMachineMerchandiseResource::collection($vendingMachine->merchandises);
     }
 }

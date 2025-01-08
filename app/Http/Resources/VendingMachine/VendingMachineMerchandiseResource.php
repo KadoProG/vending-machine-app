@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Merchandise;
+namespace App\Http\Resources\VendingMachine;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MerchandiseResource extends JsonResource
+class VendingMachineMerchandiseResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
