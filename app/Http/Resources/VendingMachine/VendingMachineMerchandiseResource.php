@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Merchandise;
+namespace App\Http\Resources\VendingMachine;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MerchandiseResource extends JsonResource
+class VendingMachineMerchandiseResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -36,6 +36,7 @@ class MerchandiseResource extends JsonResource
                 'name' => $this->last_edited->name,
             ] : null,
             'stock_quantity' => $this->pivot->stock_quantity,
+            'temperature_status' => $this->pivot->temperature_status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

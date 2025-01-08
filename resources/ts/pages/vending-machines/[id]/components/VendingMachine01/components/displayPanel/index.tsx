@@ -1,8 +1,8 @@
-import { MerchandiseResource } from '@/api/@types';
+import { VendingMachineMerchandiseResource } from '@/api/@types';
 import { LabelAndButton } from '@/pages/vending-machines/[id]/components/VendingMachine01/components/displayPanel/labelAndButton';
 
 type Props = {
-  merchandises: MerchandiseResource[];
+  merchandises: VendingMachineMerchandiseResource[];
 };
 
 /**

@@ -78,12 +78,12 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           return {
             merchandises: {
               /**
-               * @returns Array of `MerchandiseResource`
+               * @returns Array of `VendingMachineMerchandiseResource`
                */
               get: (option?: { config?: T | undefined } | undefined) =>
                 fetch<Methods_15dy3xk['get']['resBody'], BasicHeaders, Methods_15dy3xk['get']['status']>(prefix, `${prefix2}${PATH7}`, GET, option).json(),
               /**
-               * @returns Array of `MerchandiseResource`
+               * @returns Array of `VendingMachineMerchandiseResource`
                */
               $get: (option?: { config?: T | undefined } | undefined) =>
                 fetch<Methods_15dy3xk['get']['resBody'], BasicHeaders, Methods_15dy3xk['get']['status']>(prefix, `${prefix2}${PATH7}`, GET, option).json().then(r => r.body),
