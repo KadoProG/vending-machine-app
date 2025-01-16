@@ -20,19 +20,27 @@ class VengingMachineMerchandiseSeeder extends Seeder
     {
         // UUIDを生成する配列をループで作成
         $faker_uuids = collect(range(0, 48))->map(fn () => Str::uuid()->toString());
+        $uuid_user_image = Str::uuid()->toString();
+
+        Image::factory()->create([
+            'id' => $uuid_user_image,
+            'public_type' => 2,
+            'image_url' => '/images/sample_people.png',
+        ]);
 
         // 配列のIDを使ってレコードを生成
-        $faker_uuids->each(function ($uuid) {
+        $faker_uuids->each(function ($uuid) use ($uuid_user_image) {
             Background::factory()->create([
                 'id' => $uuid,
             ]);
             Image::factory()->create([
                 'id' => $uuid,
                 'public_type' => 2,
+                'image_url' => '/images/sample01_plastic_bottle.png',
             ]);
             User::factory()->create([
                 'id' => $uuid,
-                'image_id' => $uuid,
+                'image_id' => $uuid_user_image,
             ]);
             VendingMachine::factory()->create([
                 'id' => $uuid,
