@@ -30,23 +30,27 @@ class VengingMachineMerchandiseSeeder extends Seeder
 
         // 配列のIDを使ってレコードを生成
         $faker_uuids->each(function ($uuid) use ($uuid_user_image) {
+            $background_uuid = Str::uuid()->toString();
+            $user_uuid = Str::uuid()->toString();
+            $merchandise_image_uuid = Str::uuid()->toString();
+
             Background::factory()->create([
-                'id' => $uuid,
+                'id' => $background_uuid,
             ]);
             Image::factory()->create([
-                'id' => $uuid,
+                'id' => $merchandise_image_uuid,
                 'public_type' => 2,
                 'image_url' => '/images/sample01_plastic_bottle.png',
             ]);
             User::factory()->create([
-                'id' => $uuid,
+                'id' => $user_uuid,
                 'image_id' => $uuid_user_image,
             ]);
             VendingMachine::factory()->create([
                 'id' => $uuid,
                 'name' => '自販機'.substr($uuid, -3),
-                'background_id' => $uuid,
-                'author_id' => $uuid,
+                'background_id' => $background_uuid,
+                'author_id' => $user_uuid,
             ]);
 
             // 1. 手動でUUIDを生成してMerchandiseを作成
@@ -58,7 +62,8 @@ class VengingMachineMerchandiseSeeder extends Seeder
 
                 Merchandise::factory()->create([
                     'id' => $merchandiseId,
-                    'image_id' => $uuid,
+                    'image_id' => $merchandise_image_uuid,
+                    'author_id' => $user_uuid,
                 ]);
             }
 

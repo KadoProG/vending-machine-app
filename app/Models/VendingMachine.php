@@ -39,7 +39,7 @@ class VendingMachine extends Model
      */
     public function background()
     {
-        return $this->belongsTo(Background::class);
+        return $this->belongsTo(Background::class, 'background_id');
     }
 
     /**
@@ -47,7 +47,7 @@ class VendingMachine extends Model
      */
     public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     /**
