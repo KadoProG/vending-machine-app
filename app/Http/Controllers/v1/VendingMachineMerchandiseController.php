@@ -11,8 +11,24 @@ class VendingMachineMerchandiseController extends Controller
 {
     public function index(Request $request, VendingMachine $vendingMachine)
     {
-        $vendingMachine->load('merchandises.image');
+        $merchandises = $vendingMachine->merchandises->load([
+            'author' => function ($query) {
+                $query->select('id', 'name', 'email', 'image_id');
+            },
+            'author.image' => function ($query) {
+                $query->select('id', 'alt', 'image_url');
+            },
+            'lastEdited' => function ($query) {
+                $query->select('id', 'name', 'email', 'image_id');
+            },
+            'author.image' => function ($query) {
+                $query->select('id', 'alt', 'image_url');
+            },
+            'image' => function ($query) {
+                $query->select('id', 'alt', 'image_url');
+            },
+        ]);
 
-        return VendingMachineMerchandiseResource::collection($vendingMachine->merchandises);
+        return VendingMachineMerchandiseResource::collection($merchandises);
     }
 }

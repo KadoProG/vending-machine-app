@@ -35,6 +35,28 @@ export const VendingMachinesDetailPage = () => {
           }}
         >
           <h2>{vendingMachine?.name}</h2>
+          {vendingMachine?.author && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: 8,
+              }}
+            >
+              <img
+                src={vendingMachine.author.image.image_url}
+                alt={vendingMachine.author.image.alt}
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: '50%',
+                  border: '1px solid #ccc',
+                }}
+              />
+              {vendingMachine.author.name}
+            </div>
+          )}
           {vendingMachine && <VendingMachine01 vendingMachine={vendingMachine} />}
         </div>
       </div>
