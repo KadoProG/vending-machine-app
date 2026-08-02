@@ -21,7 +21,17 @@ class VendingMachineController extends Controller
         $perPage = $request->get('per_page', 10);
 
         // ペジネーションを適用
-        $vendingMachines = VendingMachine::with('background', 'author.image')->paginate($perPage, ['*'], 'page', $page);
+        $vendingMachines = VendingMachine::with([
+            'background' => function ($query) {
+                $query->select('id', 'css_type');
+            },
+            'author' => function ($query) {
+                $query->select('id', 'name', 'email', 'image_id');
+            },
+            'author.image' => function ($query) {
+                $query->select('id', 'alt', 'image_url');
+            },
+        ])->paginate($perPage, ['*'], 'page', $page);
 
         return new VendingMachineCollection($vendingMachines);
     }

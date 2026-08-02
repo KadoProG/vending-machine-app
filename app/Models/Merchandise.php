@@ -49,7 +49,7 @@ class Merchandise extends Model
      */
     public function author()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'id', 'author_id');
     }
 
     /**
@@ -57,6 +57,6 @@ class Merchandise extends Model
      */
     public function lastEdited()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'id', 'last_edited_id');
     }
 }
