@@ -22,7 +22,7 @@ export type VendingMachineMerchandiseResource = {
   image: {
     id: string;
     alt: string;
-    image_url: string;
+    url: string;
   };
 
   author_id: string;
@@ -61,9 +61,14 @@ export type VendingMachineResource = {
     image: {
       id: string;
       alt: string;
-      image_url: string;
+      url: string;
     };
   };
+}
+
+export type ModelNotFoundException = {
+  /** Error overview. */
+  message: string;
 }
 
 export type ValidationException = {
@@ -77,11 +82,6 @@ export type ValidationException = {
 }
 
 export type AuthorizationException = {
-  /** Error overview. */
-  message: string;
-}
-
-export type ModelNotFoundException = {
   /** Error overview. */
   message: string;
 }

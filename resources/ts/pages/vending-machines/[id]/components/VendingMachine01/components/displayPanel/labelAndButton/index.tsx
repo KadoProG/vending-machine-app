@@ -25,11 +25,10 @@ export const LabelAndButton: React.FC<Props> = ({ merchandise, vendingMachineCol
           alignItems: 'center',
         }}
       >
-        {merchandise && (
+        {merchandise?.image && (
           <img
-            // TODO 画像のパスを変更する
-            src="/images/sample01_plastic_bottle.png"
-            alt={merchandise?.name}
+            src={merchandise.image.url}
+            alt={merchandise.image.alt ?? merchandise.name}
             style={{
               width: '100%',
             }}
