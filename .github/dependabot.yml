@@ -47,6 +47,29 @@ updates:
           - minor
           - patch
 
+  # GitHub Actions（.github/workflows/ 配下）
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore
+      include: scope
+    labels:
+      - dependencies
+      - github-actions
+    groups:
+      actions-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
   # Docker（.docker/php/Dockerfile のベースイメージ）
   - package-ecosystem: docker
     directory: /.docker/php
