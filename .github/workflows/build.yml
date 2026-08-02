@@ -7,42 +7,52 @@ on:
       - synchronize
       - reopened
       - ready_for_review
-    paths:
-      - "resources/**"
-      - "package.json"
-      - "package-lock.json"
-      - "vite.config.ts"
-      - "tsconfig*.json"
-      - "eslint.config.js"
-      - "postcss.config.js"
-      - "tailwind.config.js"
-      - ".github/workflows/build.yml"
 
 permissions:
   contents: read
 
 jobs:
-  frontend:
+  build:
     if: ${{ github.event.pull_request.draft == false }}
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v7
 
+      - name: check changed files
+        id: changed
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+            resources/**
+            package.json
+            package-lock.json
+            vite.config.ts
+            tsconfig*.json
+            eslint.config.js
+            postcss.config.js
+            tailwind.config.js
+            .github/workflows/build.yml
+
       - name: setup node
+        if: steps.changed.outputs.any_changed == 'true'
         uses: actions/setup-node@v4
         with:
           node-version-file: "package.json"
           cache: "npm"
 
       - name: install dependencies
+        if: steps.changed.outputs.any_changed == 'true'
         run: npm ci
 
       - name: lint
+        if: steps.changed.outputs.any_changed == 'true'
         run: npm run lint
 
       - name: check types
+        if: steps.changed.outputs.any_changed == 'true'
         run: npm run check-types
 
       - name: build
+        if: steps.changed.outputs.any_changed == 'true'
         run: npm run build
