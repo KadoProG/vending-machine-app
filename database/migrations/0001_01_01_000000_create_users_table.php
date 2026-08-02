@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable()->comment('メールアドレスの確認日時');
             $table->string('password')->comment('ユーザーのパスワード');
             $table->rememberToken()->comment('リメンバートークン');
-            $table->timestamps(); // 作成日時と更新日時を自動管理
+            $table->timestamps();
             $table->softDeletes()->comment('削除日時（ソフトデリート用）');
         });
 

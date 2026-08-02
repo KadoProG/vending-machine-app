@@ -17,7 +17,6 @@ export const LabelAndButton: React.FC<Props> = ({ merchandise, vendingMachineCol
         justifyContent: 'center',
       }}
     >
-      {/* ラベル画像の表示 */}
       <div
         style={{
           flex: 1,
@@ -40,7 +39,6 @@ export const LabelAndButton: React.FC<Props> = ({ merchandise, vendingMachineCol
 
       {merchandise && <TemperatureLabel temperature_status={merchandise.temperature_status} />}
 
-      {/* ボタンの表示 */}
       <div
         style={{
           width: '100%',

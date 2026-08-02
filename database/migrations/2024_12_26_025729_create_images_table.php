@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('image_url')->comment('画像ファイルのURL');
             $table->enum('public_type', ['public', 'private'])->comment('公開タイプ（public: 公開, private: 非公開）');
             $table->foreignUuid('author_id')->nullable()->constrained('users')->comment('画像をアップロードしたユーザーのID');
-            $table->timestamps(); // 作成日時と更新日時を自動管理
-            $table->softDeletes(); // 論理削除カラムを追加
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

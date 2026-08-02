@@ -50,7 +50,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
           style={{ width: props.width, ...props.style }}
           onMouseDown={handleMouseDown}
           onClick={props.onClick}
-          tabIndex={0} // フォーカスを持たせる
+          tabIndex={0}
         >
           {props.children}
           {rippleStyles && (
@@ -70,7 +70,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
           style={{ width: props.width, ...props.style }}
           onMouseDown={handleMouseDown}
           onClick={props.onClick}
-          tabIndex={0} // フォーカスを持たせる
+          tabIndex={0}
         >
           {props.children}
           {rippleStyles && (
@@ -95,7 +95,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
             ...props.style,
             ...(props.highlight ? { backgroundColor: 'var(--color-paper-active)' } : {}),
           }}
-          tabIndex={0} // フォーカスを持たせる
+          tabIndex={0}
         >
           {props.children}
           {rippleStyles && (

@@ -14,13 +14,9 @@ class VendingMachineController extends Controller
     {
         $request->validated();
 
-        // リクエストから 'page' パラメータを取得 (デフォルトは1)
         $page = $request->get('page', 1);
-
-        // リクエストから 'per_page' パラメータを取得 (デフォルトは10)
         $perPage = $request->get('per_page', 10);
 
-        // ペジネーションを適用
         $vendingMachines = VendingMachine::with([
             'background' => function ($query) {
                 $query->select('id', 'css_type');

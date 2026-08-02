@@ -19,7 +19,7 @@ export const Pagination = <T extends FieldValues>({
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= count) {
-      onChange(page); // react-hook-form の値を更新
+      onChange(page);
     }
   };
 
@@ -49,7 +49,6 @@ export const Pagination = <T extends FieldValues>({
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem' }}>
-      {/* 前のページボタン */}
       <Button
         onClick={() => handlePageChange(value - 1)}
         disabled={value <= 1}
@@ -58,7 +57,6 @@ export const Pagination = <T extends FieldValues>({
         Previous
       </Button>
 
-      {/* ページ番号表示 */}
       {pagination.map((page, index) =>
         typeof page === 'number' ? (
           <Button
@@ -76,7 +74,6 @@ export const Pagination = <T extends FieldValues>({
         )
       )}
 
-      {/* 次のページボタン */}
       <Button
         onClick={() => handlePageChange(value + 1)}
         disabled={value >= count}
