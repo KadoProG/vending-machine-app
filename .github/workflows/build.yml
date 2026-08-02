@@ -21,7 +21,7 @@ jobs:
 
       - name: check changed files
         id: changed
-        uses: tj-actions/changed-files@v47
+        uses: tj-actions/changed-files@9426d40962ed5378910ee2e21d5f8c6fcbf2dd96 # v47.0.6
         with:
           files: |
             resources/**
