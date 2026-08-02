@@ -19,7 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      # 必須チェックのため常に起動し、FE 関連の変更がない場合は以降をスキップする
       - name: check changed files
         id: changed
         uses: tj-actions/changed-files@v45
