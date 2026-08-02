@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Database\Factories\VendingMachineFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VendingMachine extends Model
 {
-    /** @use HasFactory<\Database\Factories\VendingMachineFactory> */
+    /** @use HasFactory<VendingMachineFactory> */
     use HasFactory, SoftDeletes;
 
     /**

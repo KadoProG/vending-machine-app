@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\VendingMachine;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\VendingMachine>
+ * @extends Factory<VendingMachine>
  */
 class VendingMachineFactory extends Factory
 {
