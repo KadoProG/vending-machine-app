@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('id')->primary()->comment('主キー（UUID）');
             $table->string('name', 20)->comment('背景色の名前（20文字以内）');
             $table->string('css_type', 50)->comment('CSSで指定する背景色（50文字以内）');
-            $table->timestamps(); // 作成日時と更新日時を自動管理
+            $table->timestamps();
         });
 
         DB::statement("ALTER TABLE `backgrounds` COMMENT = '背景色を管理するテーブル'");

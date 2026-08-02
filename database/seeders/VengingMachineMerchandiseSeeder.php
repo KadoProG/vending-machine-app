@@ -18,7 +18,6 @@ class VengingMachineMerchandiseSeeder extends Seeder
      */
     public function run(): void
     {
-        // UUIDを生成する配列をループで作成
         $faker_uuids = collect(range(0, 48))->map(fn () => Str::uuid()->toString());
         $uuid_user_image = Str::uuid()->toString();
 
@@ -28,7 +27,6 @@ class VengingMachineMerchandiseSeeder extends Seeder
             'image_url' => '/images/sample_people.png',
         ]);
 
-        // 配列のIDを使ってレコードを生成
         $faker_uuids->each(function ($uuid) use ($uuid_user_image) {
             $background_uuid = Str::uuid()->toString();
             $user_uuid = Str::uuid()->toString();
@@ -53,11 +51,10 @@ class VengingMachineMerchandiseSeeder extends Seeder
                 'author_id' => $user_uuid,
             ]);
 
-            // 1. 手動でUUIDを生成してMerchandiseを作成
             $merchandiseIds = [];
 
             for ($i = 0; $i < 10; $i++) {
-                $merchandiseId = Str::uuid()->toString(); // 一意のUUIDを生成
+                $merchandiseId = Str::uuid()->toString();
                 $merchandiseIds[] = $merchandiseId;
 
                 Merchandise::factory()->create([
@@ -67,11 +64,10 @@ class VengingMachineMerchandiseSeeder extends Seeder
                 ]);
             }
 
-            // 2. VendingMachineMerchandiseを作成し、Merchandiseと連携
             foreach ($merchandiseIds as $merchandiseId) {
                 VendingMachineMerchandise::factory()->create([
-                    'vending_machine_id' => $uuid, // 生成したVendingMachineのIDを使用
-                    'merchandise_id' => $merchandiseId, // 生成したMerchandiseのIDを使用
+                    'vending_machine_id' => $uuid,
+                    'merchandise_id' => $merchandiseId,
                 ]);
             }
         });

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignUuid('merchandise_id')->constrained('merchandises')->onDelete('cascade')->comment('関連する商品のID');
             $table->integer('stock_quantity')->unsigned()->default(0)->comment('在庫数（0以上の整数）');
             $table->enum('temperature_status', ['hot', 'ice', 'default'])->comment('商品の温度状態（hot: 温かい、ice: 冷たい, default: 常温）');
-            $table->timestamps(); // 作成日時と更新日時を自動管理
+            $table->timestamps();
         });
     }
 

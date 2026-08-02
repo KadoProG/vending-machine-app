@@ -23,7 +23,6 @@
   }
 }
 
-/* フォーカスされているときのアニメーション */
 .button:focus-visible {
   outline: none;
   &::after {
@@ -41,7 +40,6 @@
   }
 }
 
-/* フォーカスのアニメーション */
 @keyframes focus-animation {
   0% {
     transform: scale(0.5);
