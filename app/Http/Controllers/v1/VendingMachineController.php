@@ -25,7 +25,7 @@ class VendingMachineController extends Controller
                 $query->select('id', 'name', 'email', 'image_id');
             },
             'author.image' => function ($query) {
-                $query->select('id', 'alt', 'image_url');
+                $query->select('id', 'alt', 'disk', 'path', 'public_type');
             },
         ])->paginate($perPage, ['*'], 'page', $page);
 

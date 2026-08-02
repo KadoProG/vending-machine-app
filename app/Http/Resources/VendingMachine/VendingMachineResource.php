@@ -29,7 +29,7 @@ class VendingMachineResource extends JsonResource
                 'image' => [
                     'id' => $this->author->image->id ?? null,
                     'alt' => $this->author->image->alt ?? null,
-                    'image_url' => $this->author->image->image_url ?? null,
+                    'url' => $this->author->image->url ?? null,
                 ],
             ] : null,
             'created_at' => $this->created_at,
