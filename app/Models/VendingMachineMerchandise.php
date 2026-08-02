@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Database\Factories\VendingMachineMerchandiseFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class VendingMachineMerchandise extends Model
 {
-    /** @use HasFactory<\Database\Factories\VendingMachineMerchandiseFactory> */
+    /** @use HasFactory<VendingMachineMerchandiseFactory> */
     use HasFactory;
 
     /**
