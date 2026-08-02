@@ -27,14 +27,14 @@ class VengingMachineMerchandiseSeeder extends Seeder
             'image_url' => '/images/sample_people.png',
         ]);
 
-        $faker_uuids->each(function ($uuid) use ($uuid_user_image) {
-            $background_uuid = Str::uuid()->toString();
+        $this->call(BackgroundSeeder::class);
+        $background_ids = Background::pluck('id');
+
+        $faker_uuids->each(function ($uuid) use ($uuid_user_image, $background_ids) {
+            $background_uuid = $background_ids->random();
             $user_uuid = Str::uuid()->toString();
             $merchandise_image_uuid = Str::uuid()->toString();
 
-            Background::factory()->create([
-                'id' => $background_uuid,
-            ]);
             Image::factory()->create([
                 'id' => $merchandise_image_uuid,
                 'public_type' => 2,
