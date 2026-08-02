@@ -6,26 +6,26 @@
 
 事前に `node`, `docker` が入っている必要があります。
 
-バックエンド及びデータベースはDocker上、フロントエンドは terminal 上(Docker内でない)で起動します。
+バックエンド及びデータベースはDocker上、フロントエンドはホストのターミナル上(Docker内でない)で起動します。
 
 ```shell
 cp .env.example .env # 環境変数のコピー
-docker-compose up --d # docker環境構築と起動
-php artisan key:generate # キーの発行
-npm ci # フロントエンドのパッケージ
+docker compose up -d # docker環境構築と起動
+docker compose exec laravel.test php artisan key:generate # アプリケーションキーの発行
+npm ci # フロントエンドのパッケージのインストール
 ```
 
 ### データテーブルの作成及び仮データ挿入
 
 ```shell
-php artisan migrate --seed
+docker compose exec laravel.test php artisan migrate --seed
 ```
 
-リセットする場合は`migrate:refresh`、`migrate:rollback`などのコマンドがあります。
+リセットする場合は`migrate:refresh`、`migrate:rollback`などのコマンドが使えます。
 
 ### 毎度行う起動
 
-バックエンドはDockerデスクトップ上で起動してください。
+バックエンドは Docker Desktop 上、もしくは `docker compose up -d` で起動してください。
 
 ```shell
 npm run dev # フロントエンドの起動
