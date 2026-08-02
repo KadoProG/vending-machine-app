@@ -20,26 +20,23 @@ class VengingMachineMerchandiseSeeder extends Seeder
     {
         $faker_uuids = collect(range(0, 48))->map(fn () => Str::uuid()->toString());
         $uuid_user_image = Str::uuid()->toString();
+        $merchandise_image_uuid = Str::uuid()->toString();
 
-        Image::factory()->create([
+        // 同じ実ファイルを指す画像レコードは 1 件にまとめる（disk + path は一意）
+        Image::factory()->fromStub('sample_people.png')->create([
             'id' => $uuid_user_image,
-            'public_type' => 2,
-            'image_url' => '/images/sample_people.png',
+        ]);
+        Image::factory()->fromStub('sample01_plastic_bottle.png')->create([
+            'id' => $merchandise_image_uuid,
         ]);
 
         $this->call(BackgroundSeeder::class);
         $background_ids = Background::pluck('id');
 
-        $faker_uuids->each(function ($uuid) use ($uuid_user_image, $background_ids) {
+        $faker_uuids->each(function ($uuid) use ($uuid_user_image, $merchandise_image_uuid, $background_ids) {
             $background_uuid = $background_ids->random();
             $user_uuid = Str::uuid()->toString();
-            $merchandise_image_uuid = Str::uuid()->toString();
 
-            Image::factory()->create([
-                'id' => $merchandise_image_uuid,
-                'public_type' => 2,
-                'image_url' => '/images/sample01_plastic_bottle.png',
-            ]);
             User::factory()->create([
                 'id' => $user_uuid,
                 'image_id' => $uuid_user_image,

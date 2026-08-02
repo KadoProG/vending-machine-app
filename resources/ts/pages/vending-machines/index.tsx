@@ -98,7 +98,7 @@ export const VendingMachinesPage = () => {
                 }}
               >
                 <img
-                  src={vendingMachine.author.image.image_url}
+                  src={vendingMachine.author.image.url}
                   alt={vendingMachine.author.image.alt}
                   style={{
                     width: 32,

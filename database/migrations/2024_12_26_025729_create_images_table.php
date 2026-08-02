@@ -16,11 +16,19 @@ return new class extends Migration
             $table->string('name', 50)->comment('画像のタイトル（必須、50文字以内）');
             $table->string('alt', 50)->nullable()->comment('代替テキスト（50文字以内）');
             $table->string('description', 255)->nullable()->comment('画像の詳細説明（255文字以内）');
-            $table->string('image_url')->comment('画像ファイルのURL');
-            $table->enum('public_type', ['public', 'private'])->comment('公開タイプ（public: 公開, private: 非公開）');
+            $table->string('disk', 32)->default('public')->comment('保存先ディスク名（config/filesystems.php の disks キー）');
+            $table->string('path')->comment('ディスク内の相対パス（ドメインを含まない）');
+            $table->string('original_name')->comment('アップロード時の元ファイル名');
+            $table->string('mime_type', 64)->comment('MIME タイプ（例: image/png）');
+            $table->unsignedBigInteger('size')->comment('ファイルサイズ（バイト）');
+            $table->unsignedInteger('width')->nullable()->comment('画像の横幅（ピクセル）');
+            $table->unsignedInteger('height')->nullable()->comment('画像の高さ（ピクセル）');
+            $table->enum('public_type', ['public', 'private'])->default('public')->comment('公開タイプ（public: 公開, private: 非公開）');
             $table->foreignUuid('author_id')->nullable()->constrained('users')->comment('画像をアップロードしたユーザーのID');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['disk', 'path']);
         });
     }
 

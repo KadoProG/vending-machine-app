@@ -6,6 +6,7 @@ import type { Methods as Methods_idk8rz } from './login';
 import type { Methods as Methods_1rpsris } from './logout';
 import type { Methods as Methods_1pbnd9f } from './register';
 import type { Methods as Methods_1i354bd } from './reset-password';
+import type { Methods as Methods_1canki } from './v1/images/_image@string';
 import type { Methods as Methods_1sbzx06 } from './v1/vending-machines';
 import type { Methods as Methods_o66vf } from './v1/vending-machines/_vendingMachine@string';
 import type { Methods as Methods_15dy3xk } from './v1/vending-machines/_vendingMachine@string/merchandises';
@@ -19,9 +20,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH3 = '/logout';
   const PATH4 = '/register';
   const PATH5 = '/reset-password';
-  const PATH6 = '/v1/vending-machines';
-  const PATH7 = '/merchandises';
-  const PATH8 = '/verify-email';
+  const PATH6 = '/v1/images';
+  const PATH7 = '/v1/vending-machines';
+  const PATH8 = '/merchandises';
+  const PATH9 = '/verify-email';
   const GET = 'GET';
   const POST = 'POST';
 
@@ -71,9 +73,28 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       $path: () => `${prefix}${PATH5}`,
     },
     v1: {
+      images: {
+        _image: (val2: string) => {
+          const prefix2 = `${PATH6}/${val2}`;
+
+          return {
+            /**
+             * 非公開画像は Web ルート外に置かれているため、必ずこのエンドポイントを経由する。
+             */
+            get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<void, BasicHeaders, Methods_1canki['get']['status']>(prefix, prefix2, GET, option).send(),
+            /**
+             * 非公開画像は Web ルート外に置かれているため、必ずこのエンドポイントを経由する。
+             */
+            $get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<void, BasicHeaders, Methods_1canki['get']['status']>(prefix, prefix2, GET, option).send().then(r => r.body),
+            $path: () => `${prefix}${prefix2}`,
+          };
+        },
+      },
       vending_machines: {
         _vendingMachine: (val2: string) => {
-          const prefix2 = `${PATH6}/${val2}`;
+          const prefix2 = `${PATH7}/${val2}`;
 
           return {
             merchandises: {
@@ -81,13 +102,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
                * @returns Array of `VendingMachineMerchandiseResource`
                */
               get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<Methods_15dy3xk['get']['resBody'], BasicHeaders, Methods_15dy3xk['get']['status']>(prefix, `${prefix2}${PATH7}`, GET, option).json(),
+                fetch<Methods_15dy3xk['get']['resBody'], BasicHeaders, Methods_15dy3xk['get']['status']>(prefix, `${prefix2}${PATH8}`, GET, option).json(),
               /**
                * @returns Array of `VendingMachineMerchandiseResource`
                */
               $get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<Methods_15dy3xk['get']['resBody'], BasicHeaders, Methods_15dy3xk['get']['status']>(prefix, `${prefix2}${PATH7}`, GET, option).json().then(r => r.body),
-              $path: () => `${prefix}${prefix2}${PATH7}`,
+                fetch<Methods_15dy3xk['get']['resBody'], BasicHeaders, Methods_15dy3xk['get']['status']>(prefix, `${prefix2}${PATH8}`, GET, option).json().then(r => r.body),
+              $path: () => `${prefix}${prefix2}${PATH8}`,
             },
             /**
              * @returns `VendingMachineResource`
@@ -106,19 +127,19 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
          * @returns `VendingMachineCollection`
          */
         get: (option?: { query?: Methods_1sbzx06['get']['query'] | undefined, config?: T | undefined } | undefined) =>
-          fetch<Methods_1sbzx06['get']['resBody'], BasicHeaders, Methods_1sbzx06['get']['status']>(prefix, PATH6, GET, option).json(),
+          fetch<Methods_1sbzx06['get']['resBody'], BasicHeaders, Methods_1sbzx06['get']['status']>(prefix, PATH7, GET, option).json(),
         /**
          * @returns `VendingMachineCollection`
          */
         $get: (option?: { query?: Methods_1sbzx06['get']['query'] | undefined, config?: T | undefined } | undefined) =>
-          fetch<Methods_1sbzx06['get']['resBody'], BasicHeaders, Methods_1sbzx06['get']['status']>(prefix, PATH6, GET, option).json().then(r => r.body),
+          fetch<Methods_1sbzx06['get']['resBody'], BasicHeaders, Methods_1sbzx06['get']['status']>(prefix, PATH7, GET, option).json().then(r => r.body),
         $path: (option?: { method?: 'get' | undefined; query: Methods_1sbzx06['get']['query'] } | undefined) =>
-          `${prefix}${PATH6}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
+          `${prefix}${PATH7}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
       },
     },
     verify_email: {
       _id: (val1: string) => {
-        const prefix1 = `${PATH8}/${val1}`;
+        const prefix1 = `${PATH9}/${val1}`;
 
         return {
           _hash: (val2: string) => {

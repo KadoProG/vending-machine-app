@@ -12,6 +12,8 @@ class ImageSeeder extends Seeder
      */
     public function run(): void
     {
-        Image::factory(10)->create();
+        // 実ファイルを伴う画像のみ作成する（disk + path は一意のため 1 スタブ 1 レコード）
+        collect(['sample_people.png', 'sample01_plastic_bottle.png'])
+            ->each(fn (string $stub) => Image::factory()->fromStub($stub)->create());
     }
 }
