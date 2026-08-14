@@ -41,16 +41,21 @@ class VengingMachineMerchandiseSeeder extends Seeder
                 'id' => $user_uuid,
                 'image_id' => $uuid_user_image,
             ]);
+            $columnCount = 10;
+            $rowCount = 3;
+
             VendingMachine::factory()->create([
                 'id' => $uuid,
                 'name' => '自販機'.substr($uuid, -3),
+                'column_count' => $columnCount,
+                'row_count' => $rowCount,
                 'background_id' => $background_uuid,
                 'author_id' => $user_uuid,
             ]);
 
             $merchandiseIds = [];
 
-            for ($i = 0; $i < 10; $i++) {
+            for ($i = 0; $i < $columnCount * $rowCount; $i++) {
                 $merchandiseId = Str::uuid()->toString();
                 $merchandiseIds[] = $merchandiseId;
 
@@ -61,10 +66,13 @@ class VengingMachineMerchandiseSeeder extends Seeder
                 ]);
             }
 
-            foreach ($merchandiseIds as $merchandiseId) {
+            // 棚の左上から右方向へ順に商品を配置する
+            foreach ($merchandiseIds as $index => $merchandiseId) {
                 VendingMachineMerchandise::factory()->create([
                     'vending_machine_id' => $uuid,
                     'merchandise_id' => $merchandiseId,
+                    'shelf_column' => $index % $columnCount,
+                    'shelf_row' => intdiv($index, $columnCount),
                 ]);
             }
         });

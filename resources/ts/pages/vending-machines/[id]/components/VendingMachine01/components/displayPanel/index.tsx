@@ -3,14 +3,23 @@ import { LabelAndButton } from '@/pages/vending-machines/[id]/components/Vending
 
 type Props = {
   merchandises: VendingMachineMerchandiseResource[];
+  /** 棚の列数（横方向の商品数） */
+  columnCount: number;
+  /** 棚の行数（縦方向の商品数） */
+  rowCount: number;
 };
 
 /**
  * 表示パネル
  */
-export const DisplayPanel: React.FC<Props> = ({ merchandises }) => {
-  const VENDING_MACHINE_ROW = 3 as const;
-  const VENDING_MACHINE_COLUMN = 8 as const;
+export const DisplayPanel: React.FC<Props> = ({ merchandises, columnCount, rowCount }) => {
+  // 棚の位置から商品を引けるようにする
+  const merchandiseByPosition = new Map<string, VendingMachineMerchandiseResource>(
+    merchandises.map((merchandise) => [
+      `${merchandise.shelf_row},${merchandise.shelf_column}`,
+      merchandise,
+    ])
+  );
 
   return (
     <div
@@ -31,19 +40,19 @@ export const DisplayPanel: React.FC<Props> = ({ merchandises }) => {
           height: '100%',
         }}
       >
-        {Array.from({ length: VENDING_MACHINE_ROW }).map((_, index) => (
+        {Array.from({ length: rowCount }).map((_, row) => (
           <div
-            key={`display_panel_row_${index}`}
+            key={`display_panel_row_${row}`}
             style={{
               display: 'flex',
-              height: `calc(100% / ${VENDING_MACHINE_ROW})`,
+              height: `calc(100% / ${rowCount})`,
             }}
           >
-            {Array.from({ length: VENDING_MACHINE_COLUMN }).map((_, index2) => (
+            {Array.from({ length: columnCount }).map((_, column) => (
               <LabelAndButton
-                key={`display_panel_row_${index2}`}
-                merchandise={merchandises[index * VENDING_MACHINE_COLUMN + index2]}
-                vendingMachineColumnCount={VENDING_MACHINE_COLUMN}
+                key={`display_panel_row_${row}_column_${column}`}
+                merchandise={merchandiseByPosition.get(`${row},${column}`)}
+                vendingMachineColumnCount={columnCount}
               />
             ))}
           </div>

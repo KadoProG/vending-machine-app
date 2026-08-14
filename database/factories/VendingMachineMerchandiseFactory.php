@@ -21,6 +21,8 @@ class VendingMachineMerchandiseFactory extends Factory
             'id' => $this->faker->uuid(),
             // 'vending_machine_id' => $this->faker->uuid(),
             // 'merchandise_id' => $this->faker->uuid(),
+            // shelf_column / shelf_row は自販機ごとに一意である必要があるため、
+            // ここでは既定値を持たせず呼び出し側で必ず指定する。
             'stock_quantity' => $this->faker->numberBetween(0, 10),
             'temperature_status' => $this->faker->randomElement(['hot', 'ice', 'default']),
         ];

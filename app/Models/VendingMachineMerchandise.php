@@ -19,6 +19,8 @@ class VendingMachineMerchandise extends Model
     protected $fillable = [
         'vending_machine_id',
         'merchandise_id',
+        'shelf_column',
+        'shelf_row',
         'stock_quantity',
         'temperature_status',
     ];
@@ -30,6 +32,8 @@ class VendingMachineMerchandise extends Model
      */
     protected $casts = [
         'id' => 'string',
+        'shelf_column' => 'integer',
+        'shelf_row' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
@@ -39,7 +43,7 @@ class VendingMachineMerchandise extends Model
      *
      * @var array<int, string>
      */
-    protected $attoributes = [
+    protected $attributes = [
         'stock_quantity' => 0,
         'temperature_status' => 'default',
     ];
