@@ -39,7 +39,11 @@ export const VendingMachine01: React.FC<Props> = ({ vendingMachine }) => {
         justifyContent: 'center',
       }}
     >
-      <DisplayPanel merchandises={merchandises} />
+      <DisplayPanel
+        merchandises={merchandises}
+        columnCount={vendingMachine.column_count}
+        rowCount={vendingMachine.row_count}
+      />
       <div
         style={{
           position: 'absolute',
