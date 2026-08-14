@@ -23,7 +23,6 @@ class Merchandise extends Model
         'price',
         'image_id',
         'author_id',
-        'last_edited_id',
     ];
 
     /**
@@ -51,13 +50,5 @@ class Merchandise extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');
-    }
-
-    /**
-     * Get the user that last edited the merchandise.
-     */
-    public function lastEdited()
-    {
-        return $this->belongsTo(User::class, 'last_edited_id');
     }
 }

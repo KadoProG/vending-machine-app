@@ -18,12 +18,6 @@ class VendingMachineMerchandiseController extends Controller
             'author.image' => function ($query) {
                 $query->select('id', 'alt', 'disk', 'path', 'public_type');
             },
-            'lastEdited' => function ($query) {
-                $query->select('id', 'name', 'email', 'image_id');
-            },
-            'lastEdited.image' => function ($query) {
-                $query->select('id', 'alt', 'disk', 'path', 'public_type');
-            },
             'image' => function ($query) {
                 $query->select('id', 'alt', 'disk', 'path', 'public_type');
             },
