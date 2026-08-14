@@ -15,6 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary()->comment('自販機の一意の識別子（UUID）');
             $table->string('name', 50)->comment('自販機名（必須）');
             $table->string('description')->nullable()->comment('自販機の説明');
+            $table->unsignedTinyInteger('column_count')->default(10)->comment('棚の列数（横方向の商品数）');
+            $table->unsignedTinyInteger('row_count')->default(3)->comment('棚の行数（縦方向の商品数）');
             $table->foreignUuid('background_id')->nullable()->constrained('backgrounds')->comment('背景色のID');
             $table->foreignUuid('author_id')->nullable()->constrained('users')->comment('自販機を作成したユーザーのID');
             $table->timestamps();
