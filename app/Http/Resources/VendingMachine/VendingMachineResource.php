@@ -18,6 +18,8 @@ class VendingMachineResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description ?? null,
+            'column_count' => $this->column_count,
+            'row_count' => $this->row_count,
             'background' => $this->background_id ? [
                 'id' => $this->background->id ?? null,
                 'css_type' => $this->background->css_type ?? null,
