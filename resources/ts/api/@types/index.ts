@@ -39,6 +39,8 @@ export type VendingMachineMerchandiseResource = {
     name: string;
   };
 
+  shelf_column: number;
+  shelf_row: number;
   stock_quantity: string;
   temperature_status: string;
 }
@@ -47,6 +49,8 @@ export type VendingMachineResource = {
   id: string;
   name: string;
   description: string;
+  column_count: number;
+  row_count: number;
 
   background: {
     id: string;
