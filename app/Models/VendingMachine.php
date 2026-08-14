@@ -20,6 +20,8 @@ class VendingMachine extends Model
     protected $fillable = [
         'name',
         'description',
+        'column_count',
+        'row_count',
         'background_id',
         'author_id',
     ];
@@ -31,6 +33,8 @@ class VendingMachine extends Model
      */
     protected $casts = [
         'id' => 'string',
+        'column_count' => 'integer',
+        'row_count' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
@@ -61,6 +65,9 @@ class VendingMachine extends Model
             'vending_machine_merchandises',
             'vending_machine_id',
             'merchandise_id'
-        )->withPivot('stock_quantity', 'temperature_status');
+        )
+            ->withPivot('stock_quantity', 'temperature_status', 'shelf_column', 'shelf_row')
+            ->orderBy('vending_machine_merchandises.shelf_row')
+            ->orderBy('vending_machine_merchandises.shelf_column');
     }
 }
