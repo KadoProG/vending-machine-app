@@ -30,11 +30,6 @@ class VendingMachineMerchandiseResource extends JsonResource
                 'id' => $this->author->id,
                 'name' => $this->author->name,
             ] : null,
-            'last_edited_id' => $this->last_edited_id,
-            'last_edited' => $this->last_edited_id ? [
-                'id' => $this->last_edited->id,
-                'name' => $this->last_edited->name,
-            ] : null,
             'shelf_column' => (int) $this->pivot->shelf_column,
             'shelf_row' => (int) $this->pivot->shelf_row,
             'stock_quantity' => $this->pivot->stock_quantity,

@@ -32,13 +32,6 @@ export type VendingMachineMerchandiseResource = {
     name: string;
   };
 
-  last_edited_id: string;
-
-  last_edited: {
-    id: string;
-    name: string;
-  };
-
   shelf_column: number;
   shelf_row: number;
   stock_quantity: string;

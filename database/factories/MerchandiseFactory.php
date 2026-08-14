@@ -24,7 +24,6 @@ class MerchandiseFactory extends Factory
             'price' => $this->faker->randomFloat(2, 0, 100),
             // 'image_id' => \App\Models\Image::factory(),
             // 'author_id' => \App\Models\User::factory(),
-            // 'last_edited_id' => \App\Models\User::factory(),
         ];
     }
 }
