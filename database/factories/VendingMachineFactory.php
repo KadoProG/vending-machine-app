@@ -21,6 +21,8 @@ class VendingMachineFactory extends Factory
             'id' => $this->faker->uuid(),
             'name' => "自販機-({$this->faker->name()})",
             'description' => $this->faker->sentence(),
+            'column_count' => 10,
+            'row_count' => 3,
             // 'background_id' => \App\Models\Background::factory(),
             // 'author_id' => \App\Models\User::factory(),
         ];
