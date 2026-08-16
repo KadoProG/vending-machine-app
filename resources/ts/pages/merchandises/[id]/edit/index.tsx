@@ -1,4 +1,5 @@
 import { Button } from '@/components/button/Button';
+import { ImageField } from '@/components/input/ImageField';
 import { TextArea } from '@/components/input/TextArea';
 import { TextField } from '@/components/input/TextField';
 import { useAuthUser } from '@/hooks/useAuthUser';
@@ -13,6 +14,7 @@ type MerchandiseForm = {
   name: string;
   description: string;
   price: number;
+  image_id: string;
 };
 
 const fetcher = async (args: { key: string; id: string }) => {
@@ -40,7 +42,7 @@ export const MerchandiseEditPage: React.FC = () => {
     reset,
     formState: { isSubmitting },
   } = useForm<MerchandiseForm>({
-    defaultValues: { name: '', description: '', price: 0 },
+    defaultValues: { name: '', description: '', price: 0, image_id: '' },
   });
 
   // 取得した商品の値をフォームに反映する
@@ -51,6 +53,7 @@ export const MerchandiseEditPage: React.FC = () => {
       name: merchandise.name,
       description: merchandise.description ?? '',
       price: Number(merchandise.price),
+      image_id: merchandise.image_id ?? '',
     });
   }, [merchandise, reset]);
 
@@ -71,6 +74,8 @@ export const MerchandiseEditPage: React.FC = () => {
           name: values.name,
           description: values.description,
           price: Number(values.price),
+          // 画像を外した場合は空文字を送って解除する（サーバー側で null に変換される）
+          image_id: values.image_id,
         },
       });
 
@@ -117,6 +122,14 @@ export const MerchandiseEditPage: React.FC = () => {
         onSubmit={onSubmit}
         style={{ display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 480 }}
       >
+        <ImageField
+          control={control}
+          name="image_id"
+          label="商品画像"
+          defaultImageUrl={merchandise.image?.url}
+          defaultImageAlt={merchandise.image?.alt}
+        />
+
         <TextField control={control} name="name" label="商品名" required maxLength={50} />
 
         <TextArea control={control} name="description" label="説明" rows={4} />

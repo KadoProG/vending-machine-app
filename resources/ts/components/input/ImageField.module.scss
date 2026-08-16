@@ -1,0 +1,59 @@
+.container {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.body {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.preview {
+  width: 96px;
+  height: 120px;
+  object-fit: contain;
+  border: 1px solid var(--divider);
+  border-radius: 4px;
+  background-color: var(--background-paper);
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 120px;
+  border: 1px dashed var(--divider);
+  border-radius: 4px;
+  color: var(--color-secondary);
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/** ファイル選択は Button で置き換えるため、input 自体は隠す */
+.file_input {
+  display: none;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--color-secondary);
+}
+
+.error {
+  position: absolute;
+  bottom: 0;
+  font-size: 14px;
+  color: red;
+}
