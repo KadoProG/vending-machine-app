@@ -45,6 +45,17 @@ export type MerchandiseResource = {
   };
 }
 
+export type UpdateMerchandiseRequest = {
+  /** 商品名 */
+  name: string;
+  /** 商品の説明 */
+  description?: string | undefined;
+  /** 商品の価格 */
+  price: number;
+  /** 商品の画像ID */
+  image_id?: string | undefined;
+}
+
 export type UserResource = {
   id: string;
   name: string;
