@@ -6,6 +6,7 @@ import type { Methods as Methods_idk8rz } from './login';
 import type { Methods as Methods_1rpsris } from './logout';
 import type { Methods as Methods_1pbnd9f } from './register';
 import type { Methods as Methods_1i354bd } from './reset-password';
+import type { Methods as Methods_zvgvgq } from './v1/images';
 import type { Methods as Methods_1canki } from './v1/images/_image@string';
 import type { Methods as Methods_rarsj8 } from './v1/merchandises';
 import type { Methods as Methods_15slns2 } from './v1/merchandises/_merchandise@string';
@@ -97,6 +98,23 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             $path: () => `${prefix}${prefix2}`,
           };
         },
+        /**
+         * 画像はアップロードした本人に紐づく非公開画像として保存する。
+         * 公開中の商品で使われるようになった時点で、他のユーザーからも
+         * 閲覧できるようになる（ImagePolicy::view）。
+         * @returns `ImageResource`
+         */
+        post: (option: { body: Methods_zvgvgq['post']['reqBody'], config?: T | undefined }) =>
+          fetch<Methods_zvgvgq['post']['resBody'], BasicHeaders, Methods_zvgvgq['post']['status']>(prefix, PATH6, POST, option, 'FormData').json(),
+        /**
+         * 画像はアップロードした本人に紐づく非公開画像として保存する。
+         * 公開中の商品で使われるようになった時点で、他のユーザーからも
+         * 閲覧できるようになる（ImagePolicy::view）。
+         * @returns `ImageResource`
+         */
+        $post: (option: { body: Methods_zvgvgq['post']['reqBody'], config?: T | undefined }) =>
+          fetch<Methods_zvgvgq['post']['resBody'], BasicHeaders, Methods_zvgvgq['post']['status']>(prefix, PATH6, POST, option, 'FormData').json().then(r => r.body),
+        $path: () => `${prefix}${PATH6}`,
       },
       merchandises: {
         _merchandise: (val2: string) => {
