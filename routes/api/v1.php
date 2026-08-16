@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/images/{image}', [v1\ImageController::class, 'show'])->name('images.show');
 
+Route::get('/users/me', [v1\UserController::class, 'me'])->middleware('auth:sanctum');
+
 Route::get('/merchandises', [v1\MerchandiseController::class, 'index']);
 
 Route::get('/vending-machines', [v1\VendingMachineController::class, 'index']);

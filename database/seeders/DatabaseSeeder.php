@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             // MerchandiseSeeder::class,
             // VendingMachineSeeder::class,
             VengingMachineMerchandiseSeeder::class,
+            TestUserSeeder::class,
         ]);
     }
 }
