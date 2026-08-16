@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name', 50)->comment('商品名（必須）');
             $table->text('description')->nullable()->comment('商品の説明');
             $table->decimal('price', 10, 2)->comment('商品の価格');
+            $table->boolean('is_published')->default(true)->index()->comment('商品を公開するか');
             $table->foreignUuid('image_id')->nullable()->constrained('images')->comment('商品の画像ID');
             $table->foreignUuid('author_id')->nullable()->constrained('users')->comment('商品を作成したユーザーのID');
             $table->timestamps();
