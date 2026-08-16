@@ -20,6 +20,7 @@ class VendingMachineResource extends JsonResource
             'description' => $this->description ?? null,
             'column_count' => $this->column_count,
             'row_count' => $this->row_count,
+            'is_published' => (bool) $this->is_published,
             'background' => $this->background_id ? [
                 'id' => $this->background->id ?? null,
                 'css_type' => $this->background->css_type ?? null,

@@ -104,11 +104,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 
           return {
             /**
+             * 非公開の商品は作成した本人のみ閲覧できる。
              * @returns `MerchandiseResource`
              */
             get: (option?: { config?: T | undefined } | undefined) =>
               fetch<Methods_15slns2['get']['resBody'], BasicHeaders, Methods_15slns2['get']['status']>(prefix, prefix2, GET, option).json(),
             /**
+             * 非公開の商品は作成した本人のみ閲覧できる。
              * @returns `MerchandiseResource`
              */
             $get: (option?: { config?: T | undefined } | undefined) =>
@@ -175,11 +177,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
               $path: () => `${prefix}${prefix2}${PATH10}`,
             },
             /**
+             * 非公開の自販機は作成した本人のみ閲覧できる。
              * @returns `VendingMachineResource`
              */
             get: (option?: { config?: T | undefined } | undefined) =>
               fetch<Methods_o66vf['get']['resBody'], BasicHeaders, Methods_o66vf['get']['status']>(prefix, prefix2, GET, option).json(),
             /**
+             * 非公開の自販機は作成した本人のみ閲覧できる。
              * @returns `VendingMachineResource`
              */
             $get: (option?: { config?: T | undefined } | undefined) =>

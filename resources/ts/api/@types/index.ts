@@ -29,6 +29,7 @@ export type MerchandiseResource = {
   name: string;
   description: string;
   price: string;
+  is_published: boolean;
   image_id: string;
 
   image: {
@@ -103,6 +104,7 @@ export type VendingMachineResource = {
   description: string;
   column_count: number;
   row_count: number;
+  is_published: boolean;
 
   background: {
     id: string;
