@@ -1,0 +1,38 @@
+.container {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.required {
+  color: red;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  font-size: 20px;
+  border: 1px solid var(--divider);
+  border-radius: 4px;
+  background-color: var(--background-paper);
+  color: var(--color-main);
+
+  &:disabled {
+    background-color: var(--color-paper-active);
+    cursor: not-allowed;
+  }
+}
+
+.input_error {
+  border-color: red;
+}
+
+.error {
+  position: absolute;
+  font-size: 14px;
+  color: red;
+}
