@@ -1,0 +1,31 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  // ログイン状態やページによって中身が変わっても高さがずれないよう固定する
+  // （Button を内包する状態がもっとも高いため、それに合わせている）
+  height: 64px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--divider);
+  background-color: var(--background-paper);
+}
+
+.title {
+  font-size: 18px;
+  color: var(--color-main);
+  text-decoration: none;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.user_name {
+  font-size: 14px;
+}
