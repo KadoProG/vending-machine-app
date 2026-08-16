@@ -1,4 +1,6 @@
 /* eslint-disable */
+import type { ReadStream } from 'fs'
+
 export type Image = {
   id: string;
   name: string;
@@ -7,6 +9,19 @@ export type Image = {
   original_name: string;
   mime_type: string;
   size: number;
+  public_type: string;
+  url: string;
+}
+
+export type ImageResource = {
+  id: string;
+  name: string;
+  alt: string;
+  description: string;
+  mime_type: string;
+  size: number;
+  width: number;
+  height: number;
   public_type: string;
   url: string;
 }
@@ -44,6 +59,17 @@ export type MerchandiseResource = {
     id: string;
     name: string;
   };
+}
+
+export type StoreImageRequest = {
+  /** アップロードする画像ファイル */
+  file: (File | ReadStream);
+  /** 画像のタイトル。省略した場合はファイル名から補完する */
+  name?: string | undefined;
+  /** 代替テキスト */
+  alt?: string | undefined;
+  /** 画像の詳細説明 */
+  description?: string | undefined;
 }
 
 export type UpdateMerchandiseRequest = {

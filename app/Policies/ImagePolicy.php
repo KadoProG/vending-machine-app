@@ -10,7 +10,8 @@ class ImagePolicy
     /**
      * 画像を閲覧できるか判定する。
      *
-     * 公開画像は誰でも閲覧できる。非公開画像はアップロードしたユーザーのみ。
+     * 公開画像は誰でも閲覧できる。非公開画像は、アップロードした本人か、
+     * 公開中の商品で使われている場合のみ閲覧できる。
      */
     public function view(?User $user, Image $image): bool
     {
@@ -18,7 +19,12 @@ class ImagePolicy
             return true;
         }
 
-        return $user !== null && $user->id === $image->author_id;
+        if ($user !== null && $user->id === $image->author_id) {
+            return true;
+        }
+
+        // 商品が公開されていれば、その画像も公開されているとみなす
+        return $image->merchandises()->published()->exists();
     }
 
     /**
