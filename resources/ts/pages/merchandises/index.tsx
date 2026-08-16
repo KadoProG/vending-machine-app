@@ -1,4 +1,6 @@
+import { Button } from '@/components/button/Button';
 import { Pagination } from '@/components/navigation/Pagination';
+import { useAuthUser } from '@/hooks/useAuthUser';
 import { apiClient } from '@/lib/apiClient';
 import { useForm } from 'react-hook-form';
 import useSWR from 'swr';
@@ -14,6 +16,8 @@ const fetcher = async ({ page, per_page }: { key: string; page?: number; per_pag
 };
 
 export const MerchandisesPage = () => {
+  const { user } = useAuthUser();
+
   const { control, watch } = useForm<{ page: number }>({
     defaultValues: {
       page: 1,
@@ -115,6 +119,10 @@ export const MerchandisesPage = () => {
                 <p style={{ fontSize: 14, color: 'gray' }}>{merchandise.author.name}</p>
               )}
             </div>
+            {/* 本人が作成した商品のみ編集できる */}
+            {!!user && user.id === merchandise.author_id && (
+              <Button href={`/merchandises/${merchandise.id}/edit`}>編集</Button>
+            )}
           </div>
         ))}
       </div>
