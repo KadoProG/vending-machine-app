@@ -14,7 +14,7 @@ class AuthenticationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->post('/login', [
+        $response = $this->post('/api/login', [
             'email' => $user->email,
             'password' => 'password',
         ]);
@@ -27,7 +27,7 @@ class AuthenticationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->post('/login', [
+        $this->post('/api/login', [
             'email' => $user->email,
             'password' => 'wrong-password',
         ]);
@@ -39,9 +39,17 @@ class AuthenticationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->actingAs($user)->post('/logout');
+        // 実際のログインでセッションを確立してからログアウトする
+        $this->post('/api/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+        $this->assertAuthenticated();
 
-        $this->assertGuest();
+        $response = $this->post('/api/logout');
+
+        // ログアウト対象は web ガード（セッション）のため、明示的に検証する
+        $this->assertGuest('web');
         $response->assertNoContent();
     }
 }
