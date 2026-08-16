@@ -13,3 +13,15 @@ const client = axios.create({
 });
 
 export const apiClient = api(aspida(client));
+
+/**
+ * Sanctum の CSRF Cookie を取得する。
+ *
+ * SPA からセッション認証を行う場合、ログインなどの POST の前に必ず呼び出す必要がある。
+ * CSRF Cookie のエンドポイントは API の prefix 外にあるため、オリジンから組み立てる。
+ */
+export const fetchCsrfCookie = async () => {
+  const origin = new URL(safeEnv.VITE_API_URL, window.location.origin).origin;
+
+  await client.get(`${origin}/sanctum/csrf-cookie`);
+};

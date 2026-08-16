@@ -1,4 +1,16 @@
 /* eslint-disable */
+export type Image = {
+  id: string;
+  name: string;
+  disk: string;
+  path: string;
+  original_name: string;
+  mime_type: string;
+  size: number;
+  public_type: string;
+  url: string;
+}
+
 export type LoginRequest = {
   email: string;
   password: string;
@@ -31,6 +43,13 @@ export type MerchandiseResource = {
     id: string;
     name: string;
   };
+}
+
+export type UserResource = {
+  id: string;
+  name: string;
+  email: string;
+  image: Image;
 }
 
 export type VendingMachineCollection = {
@@ -97,6 +116,11 @@ export type ModelNotFoundException = {
   message: string;
 }
 
+export type AuthenticationException = {
+  /** Error overview. */
+  message: string;
+}
+
 export type ValidationException = {
   /** Errors overview. */
   message: string;
@@ -108,11 +132,6 @@ export type ValidationException = {
 }
 
 export type AuthorizationException = {
-  /** Error overview. */
-  message: string;
-}
-
-export type AuthenticationException = {
   /** Error overview. */
   message: string;
 }
