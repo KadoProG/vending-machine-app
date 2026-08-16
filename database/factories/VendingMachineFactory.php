@@ -23,8 +23,19 @@ class VendingMachineFactory extends Factory
             'description' => $this->faker->sentence(),
             'column_count' => 10,
             'row_count' => 3,
+            'is_published' => true,
             // 'background_id' => \App\Models\Background::factory(),
             // 'author_id' => \App\Models\User::factory(),
         ];
+    }
+
+    /**
+     * 非公開の自販機を作成する。
+     */
+    public function unpublished(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'is_published' => false,
+        ]);
     }
 }

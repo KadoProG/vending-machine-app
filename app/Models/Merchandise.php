@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublishedScope;
 use Database\Factories\MerchandiseFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Merchandise extends Model
 {
     /** @use HasFactory<MerchandiseFactory> */
-    use HasFactory, HasUuids, SoftDeletes;
+    use HasFactory, HasPublishedScope, HasUuids, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +23,7 @@ class Merchandise extends Model
         'name',
         'description',
         'price',
+        'is_published',
         'image_id',
         'author_id',
     ];
@@ -33,6 +35,7 @@ class Merchandise extends Model
      */
     protected $casts = [
         'id' => 'string',
+        'is_published' => 'boolean',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

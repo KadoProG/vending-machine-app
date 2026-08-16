@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasPublishedScope;
 use Database\Factories\VendingMachineFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class VendingMachine extends Model
 {
     /** @use HasFactory<VendingMachineFactory> */
-    use HasFactory, HasUuids, SoftDeletes;
+    use HasFactory, HasPublishedScope, HasUuids, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -23,6 +24,7 @@ class VendingMachine extends Model
         'description',
         'column_count',
         'row_count',
+        'is_published',
         'background_id',
         'author_id',
     ];
@@ -36,6 +38,7 @@ class VendingMachine extends Model
         'id' => 'string',
         'column_count' => 'integer',
         'row_count' => 'integer',
+        'is_published' => 'boolean',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
