@@ -29,6 +29,7 @@ export type MerchandiseResource = {
   name: string;
   description: string;
   price: string;
+  is_published: boolean;
   image_id: string;
 
   image: {
@@ -43,6 +44,17 @@ export type MerchandiseResource = {
     id: string;
     name: string;
   };
+}
+
+export type UpdateMerchandiseRequest = {
+  /** 商品名 */
+  name: string;
+  /** 商品の説明 */
+  description?: string | undefined;
+  /** 商品の価格 */
+  price: number;
+  /** 商品の画像ID */
+  image_id?: string | undefined;
 }
 
 export type UserResource = {
@@ -92,6 +104,7 @@ export type VendingMachineResource = {
   description: string;
   column_count: number;
   row_count: number;
+  is_published: boolean;
 
   background: {
     id: string;

@@ -8,6 +8,7 @@ import type { Methods as Methods_1pbnd9f } from './register';
 import type { Methods as Methods_1i354bd } from './reset-password';
 import type { Methods as Methods_1canki } from './v1/images/_image@string';
 import type { Methods as Methods_rarsj8 } from './v1/merchandises';
+import type { Methods as Methods_15slns2 } from './v1/merchandises/_merchandise@string';
 import type { Methods as Methods_zyr5pb } from './v1/users/me';
 import type { Methods as Methods_1sbzx06 } from './v1/vending-machines';
 import type { Methods as Methods_o66vf } from './v1/vending-machines/_vendingMachine@string';
@@ -30,6 +31,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH11 = '/verify-email';
   const GET = 'GET';
   const POST = 'POST';
+  const PUT = 'PUT';
 
   return {
     email: {
@@ -97,6 +99,37 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         },
       },
       merchandises: {
+        _merchandise: (val2: string) => {
+          const prefix2 = `${PATH7}/${val2}`;
+
+          return {
+            /**
+             * 非公開の商品は作成した本人のみ閲覧できる。
+             * @returns `MerchandiseResource`
+             */
+            get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_15slns2['get']['resBody'], BasicHeaders, Methods_15slns2['get']['status']>(prefix, prefix2, GET, option).json(),
+            /**
+             * 非公開の商品は作成した本人のみ閲覧できる。
+             * @returns `MerchandiseResource`
+             */
+            $get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_15slns2['get']['resBody'], BasicHeaders, Methods_15slns2['get']['status']>(prefix, prefix2, GET, option).json().then(r => r.body),
+            /**
+             * 商品を作成した本人のみ更新できる。
+             * @returns `MerchandiseResource`
+             */
+            put: (option: { body: Methods_15slns2['put']['reqBody'], config?: T | undefined }) =>
+              fetch<Methods_15slns2['put']['resBody'], BasicHeaders, Methods_15slns2['put']['status']>(prefix, prefix2, PUT, option).json(),
+            /**
+             * 商品を作成した本人のみ更新できる。
+             * @returns `MerchandiseResource`
+             */
+            $put: (option: { body: Methods_15slns2['put']['reqBody'], config?: T | undefined }) =>
+              fetch<Methods_15slns2['put']['resBody'], BasicHeaders, Methods_15slns2['put']['status']>(prefix, prefix2, PUT, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix2}`,
+          };
+        },
         /**
          * @returns `MerchandiseCollection`
          */
@@ -144,11 +177,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
               $path: () => `${prefix}${prefix2}${PATH10}`,
             },
             /**
+             * 非公開の自販機は作成した本人のみ閲覧できる。
              * @returns `VendingMachineResource`
              */
             get: (option?: { config?: T | undefined } | undefined) =>
               fetch<Methods_o66vf['get']['resBody'], BasicHeaders, Methods_o66vf['get']['status']>(prefix, prefix2, GET, option).json(),
             /**
+             * 非公開の自販機は作成した本人のみ閲覧できる。
              * @returns `VendingMachineResource`
              */
             $get: (option?: { config?: T | undefined } | undefined) =>

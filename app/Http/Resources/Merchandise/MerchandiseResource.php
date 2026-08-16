@@ -19,6 +19,7 @@ class MerchandiseResource extends JsonResource
             'name' => $this->name,
             'description' => (string) $this->description,
             'price' => $this->price,
+            'is_published' => (bool) $this->is_published,
             'image_id' => (string) $this->image_id,
             'image' => $this->image ? [
                 'id' => $this->image->id,
