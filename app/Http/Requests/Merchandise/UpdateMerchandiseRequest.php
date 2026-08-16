@@ -4,6 +4,7 @@ namespace App\Http\Requests\Merchandise;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateMerchandiseRequest extends FormRequest
 {
@@ -36,11 +37,31 @@ class UpdateMerchandiseRequest extends FormRequest
             /** 商品の価格 */
             'price' => 'required|numeric|min:0|max:99999999.99',
             /**
-             * 商品の画像ID
+             * 商品の画像ID。空文字を指定すると画像を解除する
              *
              * @var string
              */
-            'image_id' => 'nullable|uuid|exists:images,id',
+            'image_id' => [
+                'nullable',
+                'uuid',
+                // 他人がアップロードした画像は指定できない。指定できると、
+                // その画像を含む商品を公開することで他人の非公開画像を
+                // 閲覧可能にできてしまうため
+                Rule::exists('images', 'id')->where('author_id', $this->user()?->id),
+            ],
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * 画像の解除は空文字で表現される。そのままでは uuid の検証に通らないため
+     * null へ変換する。
+     */
+    protected function prepareForValidation(): void
+    {
+        if ($this->input('image_id') === '') {
+            $this->merge(['image_id' => null]);
+        }
     }
 }
