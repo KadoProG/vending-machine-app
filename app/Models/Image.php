@@ -79,6 +79,14 @@ class Image extends Model
     }
 
     /**
+     * Get the merchandises that use the image.
+     */
+    public function merchandises()
+    {
+        return $this->hasMany(Merchandise::class, 'image_id');
+    }
+
+    /**
      * Get the filesystem disk where the image is stored.
      */
     public function disk(): FilesystemAdapter

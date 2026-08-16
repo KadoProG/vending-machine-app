@@ -40,6 +40,17 @@ class ImageFactory extends Factory
     }
 
     /**
+     * 非公開の画像を作成する。
+     */
+    public function private(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'disk' => ImageService::DISK_PRIVATE,
+            'public_type' => Image::PUBLIC_TYPE_PRIVATE,
+        ]);
+    }
+
+    /**
      * database/seeders/stubs 配下の実ファイルをディスクへ配置した状態にする。
      *
      * DB のレコードだけでなく実体も伴うため、画面表示まで確認できる。
