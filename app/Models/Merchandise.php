@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Database\Factories\MerchandiseFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Merchandise extends Model
 {
     /** @use HasFactory<MerchandiseFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory, HasUuids, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

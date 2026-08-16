@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Database\Factories\VendingMachineMerchandiseFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class VendingMachineMerchandise extends Model
 {
     /** @use HasFactory<VendingMachineMerchandiseFactory> */
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     /**
      * The attributes that are mass assignable.
