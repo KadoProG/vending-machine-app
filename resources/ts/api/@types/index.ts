@@ -4,6 +4,35 @@ export type LoginRequest = {
   password: string;
 }
 
+export type MerchandiseCollection = {
+  data: MerchandiseResource[];
+  current_page: string;
+  per_page: string;
+  total: string;
+  last_page: string;
+}
+
+export type MerchandiseResource = {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  image_id: string;
+
+  image: {
+    id: string;
+    alt: string;
+    url: string;
+  };
+
+  author_id: string;
+
+  author: {
+    id: string;
+    name: string;
+  };
+}
+
 export type VendingMachineCollection = {
   data: VendingMachineResource[];
   current_page: string;
