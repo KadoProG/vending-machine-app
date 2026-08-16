@@ -1,0 +1,99 @@
+name: php check
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+permissions:
+  contents: read
+
+jobs:
+  php:
+    if: ${{ github.event.pull_request.draft == false }}
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_DATABASE: laravel
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost -ppassword"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: check changed files
+        id: changed
+        uses: tj-actions/changed-files@9426d40962ed5378910ee2e21d5f8c6fcbf2dd96 # v47.0.6
+        with:
+          files: |
+            app/**
+            bootstrap/**
+            config/**
+            database/**
+            routes/**
+            tests/**
+            composer.json
+            composer.lock
+            phpunit.xml
+            pint.json
+            .github/workflows/php.yml
+
+      - name: setup php
+        if: steps.changed.outputs.any_changed == 'true'
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: pdo_mysql, mbstring, exif, pcntl, bcmath, gd
+          coverage: none
+
+      - name: install dependencies
+        if: steps.changed.outputs.any_changed == 'true'
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: lint
+        if: steps.changed.outputs.any_changed == 'true'
+        run: ./vendor/bin/pint --test
+
+      - name: prepare environment
+        if: steps.changed.outputs.any_changed == 'true'
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      # ルートの表示を伴うテストが Vite のマニフェストを参照するため、
+      # public/build を生成しておく（public/build は git 管理外）
+      - name: setup node
+        if: steps.changed.outputs.any_changed == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: "package.json"
+          cache: "npm"
+
+      - name: build assets
+        if: steps.changed.outputs.any_changed == 'true'
+        run: |
+          npm ci
+          npm run build
+
+      - name: test
+        if: steps.changed.outputs.any_changed == 'true'
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: laravel
+          DB_USERNAME: root
+          DB_PASSWORD: password
+        run: php artisan test
