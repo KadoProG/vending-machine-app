@@ -4,7 +4,7 @@ import { apiClient } from '@/lib/apiClient';
 import { useForm } from 'react-hook-form';
 import useSWR from 'swr';
 
-const fetcher = async ({ page, per_page }: { page?: number; per_page?: number }) => {
+const fetcher = async ({ page, per_page }: { key: string; page?: number; per_page?: number }) => {
   const response = await apiClient.v1.vending_machines.get({
     query: {
       page,
@@ -25,6 +25,7 @@ export const VendingMachinesPage = () => {
 
   const { data } = useSWR(
     {
+      key: '/v1/vending-machines',
       page,
       per_page: 10,
     },
@@ -97,16 +98,18 @@ export const VendingMachinesPage = () => {
                   padding: 8,
                 }}
               >
-                <img
-                  src={vendingMachine.author.image.url}
-                  alt={vendingMachine.author.image.alt}
-                  style={{
-                    width: 32,
-                    height: 32,
-                    borderRadius: '50%',
-                    border: '1px solid #ccc',
-                  }}
-                />
+                {vendingMachine.author.image?.url && (
+                  <img
+                    src={vendingMachine.author.image.url}
+                    alt={vendingMachine.author.image.alt}
+                    style={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: '50%',
+                      border: '1px solid #ccc',
+                    }}
+                  />
+                )}
                 {vendingMachine.author.name}
               </div>
             )}
