@@ -20,7 +20,7 @@
         "axios": "^1.19.0",
         "dayjs": "^1.11.21",
         "openapi2aspida": "^0.24.0",
-        "react": "^18.3.1",
+        "react": "^19.2.8",
         "react-dom": "^18.3.1",
         "react-hook-form": "^7.85.0",
         "react-router-dom": "^7.18.2",
@@ -31,7 +31,7 @@
     "devDependencies": {
         "@eslint/js": "^10.0.1",
         "@types/node": "^22.10.2",
-        "@types/react": "^18.3.18",
+        "@types/react": "^19.2.18",
         "@types/react-dom": "^18.3.5",
         "@types/uuid": "^10.0.0",
         "@vitejs/plugin-react-swc": "^4.3.3",
