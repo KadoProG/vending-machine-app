@@ -26,7 +26,7 @@
         "react-router-dom": "^7.18.4",
         "swr": "^2.5.1",
         "tailwindcss": "^3.4.17",
-        "uuid": "^11.1.1"
+        "uuid": "^14.0.2"
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
