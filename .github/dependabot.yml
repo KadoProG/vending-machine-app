@@ -23,6 +23,39 @@ updates:
         update-types:
           - minor
           - patch
+      # メジャーは peer dependency で連動するものを同じ PR にまとめる。
+      # 単体で上げると npm ci が ERESOLVE で落ちるため（vite 8 は laravel-vite-plugin 3 が必須、
+      # react 19 は react-dom / @types/react-dom も 19 が必須、など）。
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+        update-types:
+          - major
+      vite:
+        patterns:
+          - "vite"
+          - "laravel-vite-plugin"
+          - "@vitejs/*"
+        update-types:
+          - major
+      eslint:
+        patterns:
+          - "eslint"
+          - "@eslint/*"
+          - "eslint-*"
+          - "typescript-eslint"
+          - "globals"
+        update-types:
+          - major
+    ignore:
+      # typescript-eslint の peer が typescript <6.1.0 のため、7 系に上げると lint が動かない。
+      # typescript-eslint が対応したら外す。
+      - dependency-name: "typescript"
+        versions:
+          - ">=6.1.0"
 
   # バックエンド（Composer / Laravel）
   - package-ecosystem: composer
