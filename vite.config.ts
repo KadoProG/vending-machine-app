@@ -13,7 +13,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './resources/ts'),
+      '@': path.resolve(import.meta.dirname, './resources/ts'),
     },
   },
 });
