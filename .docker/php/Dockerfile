@@ -1,5 +1,5 @@
 # php:8.3-apache ベースイメージを使用
-FROM php:8.3-apache
+FROM php:8.5-apache
 
 # 必要なパッケージとPHP拡張のインストール
 RUN apt-get update && apt-get install -y \
