@@ -20,13 +20,13 @@
         "axios": "^1.20.0",
         "dayjs": "^1.11.23",
         "openapi2aspida": "^0.24.0",
-        "react": "^19.3.0",
-        "react-dom": "^19.3.0",
-        "react-hook-form": "^7.89.0",
+        "react": "^19.3.1",
+        "react-dom": "^19.3.1",
+        "react-hook-form": "^7.90.0",
         "react-router-dom": "^7.18.4",
         "swr": "^2.5.1",
         "tailwindcss": "^3.4.17",
-        "uuid": "^14.0.2"
+        "uuid": "^14.0.3"
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
@@ -44,10 +44,10 @@
         "husky": "^9.1.7",
         "laravel-vite-plugin": "^3.2.0",
         "lint-staged": "^17.6.0",
-        "prettier": "^3.9.9",
+        "prettier": "^3.9.10",
         "sass": "^1.105.1",
         "typescript": "^6.0.3",
-        "typescript-eslint": "^8.71.1",
+        "typescript-eslint": "^8.71.2",
         "vite": "^8.3.4"
     },
     "overrides": {
